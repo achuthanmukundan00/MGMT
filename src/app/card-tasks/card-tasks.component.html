@@ -1,0 +1,30 @@
+<div class="card shadow border-0 mt-4" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">Tasks ({{ itemCountTasks }})</h5>
+  </div>
+  <ul class="overflow-auto list-group list-group-flush mx-4">
+    <form class="form-check my-1" *ngFor="let task of tasks">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="defaultCheck1"
+      />
+      <label class="form-check-label ml-2" for="defaultCheck1">{{
+        task
+      }}</label>
+    </form>
+  </ul>
+  <div class="card-body">
+    <form>
+      <input
+        type="text"
+        class="form-control shadow-sm border-0 p-2"
+        name="task"
+        placeholder="Enter a new task here..."
+        [(ngModel)]="taskText"
+        (keydown.enter)="addItem()"
+      />
+    </form>
+  </div>
+</div>
