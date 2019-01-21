@@ -7,7 +7,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardTasksComponent } from './card-tasks/card-tasks.component';
 import { CardTeamComponent } from './card-team/card-team.component';
-import { CardTimelineComponent } from './card-timeline/card-timeline.component';
+import { TeamComponent } from './team/team.component';
+import { SignInComponent } from './login/sign-in/sign-in.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,14 +23,19 @@ import { CardTimelineComponent } from './card-timeline/card-timeline.component';
     NavbarComponent,
     CardTasksComponent,
     CardTeamComponent,
-    CardTimelineComponent
+    TeamComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
