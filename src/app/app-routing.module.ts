@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /*Import Components*/
-import { SignUpComponent } from './login/sign-up/sign-up.component';
-import { SignInComponent } from './login/sign-in/sign-in.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-
+import { TeamComponent } from './team/team.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'register-user', component: SignUpComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  {
+    path: '',
+    component: LandingPageComponent
+  },
+  {
+    path: 'team',
+    component: TeamComponent
+  }
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { environment } from '../environments/environment';
     CardTeamComponent,
     TeamComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    LandingPageComponent
   ],
   imports: [
     AppRoutingModule,
@@ -38,4 +40,6 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+}
