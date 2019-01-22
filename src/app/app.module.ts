@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { EmptyHeaderComponent } from './empty-header/empty-header.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     TeamComponent,
     SignInComponent,
     SignUpComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    EmptyHeaderComponent,
+    UserProfileComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +42,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    CoreModule
   ],
   bootstrap: [AppComponent]
 })
