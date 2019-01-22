@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-  font-family: 'Helvetica';
+* {
+  font-family: "Helvetica";
 }
-
-
+h1 {
+  font-weight: bold;
+}
+.navbar-brand{
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 18px;
+}
