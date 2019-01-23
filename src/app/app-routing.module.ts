@@ -1,14 +1,14 @@
 import { AuthGuard } from './core/auth.guard';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /*Import Components*/
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TeamComponent } from './team/team.component';
-import { SignUpComponent } from './login/sign-up/sign-up.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { SignInComponent } from './login/sign-in/sign-in.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TeamComponent } from './pages/team/team.component';
+import { SignUpComponent } from './pages/login/sign-up/sign-up.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { SignInComponent } from './pages/login/sign-in/sign-in.component';
 
 const routes: Routes = [
   {

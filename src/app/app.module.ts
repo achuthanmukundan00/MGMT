@@ -5,16 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CardTasksComponent } from './card-tasks/card-tasks.component';
-import { CardTeamComponent } from './card-team/card-team.component';
-import { SignInComponent } from './login/sign-in/sign-in.component';
-import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { SignInComponent } from './pages/login/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/login/sign-up/sign-up.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { EmptyHeaderComponent } from './empty-header/empty-header.component';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 
@@ -22,11 +19,8 @@ import { AuthService } from './core/auth.service';
   declarations: [
     AppComponent,
     NavbarComponent,
-    CardTasksComponent,
-    CardTeamComponent,
     SignInComponent,
     SignUpComponent,
-    EmptyHeaderComponent,
     routingComponents
   ],
   providers: [AuthGuard, AuthService],
