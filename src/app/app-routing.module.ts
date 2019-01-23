@@ -14,7 +14,7 @@ const routes: Routes = [
     component: LandingPageComponent
   },
   {
-    path: 'login',
+    path: 'profile',
     component: UserProfileComponent
   },
   {

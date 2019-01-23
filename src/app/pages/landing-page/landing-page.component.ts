@@ -10,4 +10,8 @@ export class LandingPageComponent implements OnInit {
   constructor(public auth: AuthService) {}
 
   ngOnInit() {}
+
+  signIn() {
+    this.auth.googleLogin();
+  }
 }
