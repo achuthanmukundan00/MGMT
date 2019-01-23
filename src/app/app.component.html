@@ -1,2 +1,11 @@
-<app-navbar></app-navbar>
+<div *ngIf="(auth.user | async); then authenticated; else guest"></div>
+
+<!-- User not logged in-->
+<ng-template #guest> <app-empty-navbar></app-empty-navbar> </ng-template>
+
+<!-- User logged in -->
+<ng-template #authenticated>
+  <div *ngIf="(auth.user | async) as user"><app-navbar></app-navbar></div>
+</ng-template>
+
 <router-outlet></router-outlet>
