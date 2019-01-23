@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,33 +10,35 @@ import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 
-
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: LandingPageComponent
-  // },
+  {
+    path: '',
+    component: LandingPageComponent
+  },
+  {
+    path: 'login',
+    component: UserProfileComponent
+  },
   {
     path: 'team',
-    component: TeamComponent
+    component: TeamComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'sign-in',
-    component: SignInComponent
-  },
-  {
-    path: '',
-    component: UserProfileComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   }
-
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+export const routingComponents = [
+  LandingPageComponent,
+  UserProfileComponent,
+  TeamComponent,
+  DashboardComponent
+];

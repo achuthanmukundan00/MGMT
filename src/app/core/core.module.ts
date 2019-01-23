@@ -5,10 +5,6 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AngularFirestoreModule,
-    AngularFireAuthModule
-  ]
+  imports: [CommonModule, AngularFirestoreModule, AngularFireAuthModule]
 })
-export class CoreModule { }
+export class CoreModule {}
