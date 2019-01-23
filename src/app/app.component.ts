@@ -1,7 +1,7 @@
+import { AuthService } from './core/auth.service';
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 export class AppComponent {
   title = 'mgmtProject';
   items: Observable<any[]>;
-  constructor(db: AngularFirestore) {
+  constructor(db: AngularFirestore, public auth: AuthService) {
     this.items = db.collection('items').valueChanges();
   }
 }
