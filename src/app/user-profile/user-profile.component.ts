@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './../core/auth.service';
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  constructor(public auth: AuthService) {}
-
+  constructor(public auth: AuthService) {
+  }
   ngOnInit() {}
 
   signIn() {
