@@ -8,35 +8,20 @@
         </li>
 
         <li class="nav-item mx-3 ">
-          <a class="nav-link" routerLink="team">Team</a>
+          <a class="nav-link" routerLink="projects">Projects</a>
         </li>
 
         <li class="nav-item mx-3 ">
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle bg-white text-body shadow-sm border-0"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Switch Projects
-            </button>
-            <div
-              class="dropdown-menu border-0 shadow-sm"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
+          <a class="nav-link" routerLink="team">Team</a>
         </li>
       </ul>
     </div>
     <div class="ml-auto mr-3">
-      <img [src]="user.photoURL" class="profile-picture rounded-circle" routerLink="profile" />
+      <img
+        [src]="user.photoURL"
+        class="profile-picture rounded-circle"
+        routerLink="profile"
+      />
     </div>
   </nav>
 </div>

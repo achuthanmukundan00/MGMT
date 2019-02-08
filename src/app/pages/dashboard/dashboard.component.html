@@ -1,11 +1,11 @@
-<div class="mt-4 mb-3 px-4 container-fluid">
+<div class="mt-4 mb-3 container-fluid">
   <h1 class="project-title font-weight-bold">{{ currentProject }}</h1>
 
   <div class="container-fluid p-0">
-    <div class="row">
-
-      <!--Stuff goes here-->
-
+    <div class="row px-3">
+      <app-card-tasks class="task-card mr-2 col-sm"></app-card-tasks>
+      <app-card-team class="team-card ml-2 col-sm"></app-card-team>
+      <app-card-deadlines class="deadlines-card ml-2 col-sm"></app-card-deadlines>
     </div>
   </div>
 </div>

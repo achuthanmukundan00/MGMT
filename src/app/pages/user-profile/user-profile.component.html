@@ -1,6 +1,32 @@
-<div *ngIf="(auth.user | async) as user">
-    <h3>Welcome {{ user.displayName }}!</h3>
-    <img [src]="user.photoURL" />
-    <p>UID: {{ user.uid }}</p>
-    <button (click)="signOut()">Logout</button>
+<div class="profile mt-4 mb-3">
+  <div class="container-fluid">
+    <div class="row px-3">
+      <div class="card border-0 ml-0 mr-2 p-3 col- rounded-none shadow">
+        <img
+          class="profile-pic rounded"
+          [src]="user.photoURL"
+          style="width: 200px; height: 200px;"
+        />
+        <div class="media-body mt-3">
+          <h4 class="font-weight-bold">{{ user.displayName }}</h4>
+          <div class="form-group mt-3 rounded">
+            <textarea
+              id="bio"
+              rows="6"
+              placeholder="Add a short bio"
+              class="bio w-100"
+            ></textarea>
+          </div>
+          <div class="container-fluid row">
+              <button class="btn btn-dark mt-auto shadow-sm mr-2">Edit</button>
+              <button class="btn btn-success mt-auto shadow-sm">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
+        <button class="btn btn-danger mt-auto shadow-sm" (click)="signOut()">Logout</button>
+      </div>
+    </div>
+  </div>
+
 </div>

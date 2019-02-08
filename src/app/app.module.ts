@@ -1,27 +1,35 @@
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { EmptyNavbarComponent } from './empty-navbar/empty-navbar.component';
+import { CardTasksComponent } from './card-components/card-tasks/card-tasks.component';
+import { CardDeadlinesComponent } from './card-components/card-deadlines/card-deadlines.component';
+import { CardTeamComponent } from './card-components/card-team/card-team.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     routingComponents,
-    EmptyNavbarComponent
+    EmptyNavbarComponent,
+    CardTasksComponent,
+    CardDeadlinesComponent,
+    CardTeamComponent,
+    ProjectsComponent,
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, ReactiveFormsModule],
   imports: [
     AppRoutingModule,
     FormsModule,
@@ -30,7 +38,8 @@ import { EmptyNavbarComponent } from './empty-navbar/empty-navbar.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
