@@ -1,5 +1,4 @@
 import { AuthGuard } from './core/auth.guard';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,6 +6,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TeamComponent } from './pages/team/team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+
+
 
 const routes: Routes = [
   {
@@ -15,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: UserProfileComponent
+    component: UserProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'team',
@@ -26,7 +30,13 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent,
+    canActivate: [AuthGuard]
+  },
+
 ];
 
 @NgModule({

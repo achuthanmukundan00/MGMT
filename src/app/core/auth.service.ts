@@ -9,11 +9,13 @@ import {
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+// Users Collection
 interface User {
   uid: string;
   email: string;
   photoURL: string;
   displayName?: string;
+  projects: string[];
 }
 
 @Injectable({
@@ -39,6 +41,14 @@ export class AuthService {
     );
   }
 
+
+  // If error, console log
+  private handleError(error) {
+    console.error(error);
+  }
+
+
+
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
@@ -60,12 +70,10 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       photoURL: user.photoURL,
-      displayName: user.displayName
+      displayName: user.displayName,
+      projects: []
     };
-    // console.log(user.uid);
-    // console.log(user.email);
-    // console.log(user.photoURL);
-    // console.log(user.displayName);
+
     return userRef.set(data, { merge: true });
   }
   signOut() {
