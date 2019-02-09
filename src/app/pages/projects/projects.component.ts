@@ -1,59 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ProjectService } from '../../core/project.service';
+import { Project } from '../../models/project';
 
-interface Project {
-  name: string;
-  description: string;
-  deadlines: Deadline[];
-}
-interface ProjectId extends Project {
-  id: string;
-}
 
-interface Deadline {
-  name: string;
-  date: string;
-  tasks: string[];
-}
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  styleUrls: ['./projects.component.scss'],
+
 })
 export class ProjectsComponent implements OnInit {
-  projectsCollection: AngularFirestoreCollection<Project>;
-  projects: any;
+  projects: Project[];
 
-  projectName: string;
-  projectDescription: string;
+  constructor(private projectService: ProjectService ) {
 
-  constructor(private afs: AngularFirestore) {}
+  }
 
   ngOnInit() {
-    this.projectsCollection = this.afs.collection('projects');
-
-    this.projects = this.projectsCollection.snapshotChanges().pipe(
-      map(actions =>
-        actions.map(a => {
-          const data = a.payload.doc.data() as Project;
-          const id = a.payload.doc.id;
-          return { id, data };
-        })
-      )
-    );
+    this.projectService.getProjects().subscribe(projects => {
+      this.projects = projects;
+    });
   }
 
-  addProject() {
-    this.afs
-      .collection('projects')
-      .add({ name: this.projectName, description: this.projectDescription });
+  onSubmit(project) {
+    this.projectService.deleteProject(project);
   }
 
-  deleteProject(projectId) {
-    this.afs.doc('projects/' + projectId).delete();
-  }
 }
