@@ -1,7 +1,7 @@
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +17,9 @@ import { CardTasksComponent } from './card-components/card-tasks/card-tasks.comp
 import { CardDeadlinesComponent } from './card-components/card-deadlines/card-deadlines.component';
 import { CardTeamComponent } from './card-components/card-team/card-team.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectService } from './core/project.service';
+import { ProjectCreatorComponent } from './pages/projects/project-creator/project-creator.component';
+import { ProjectEditorComponent } from './pages/projects/project-editor/project-editor.component';
 
 @NgModule({
   declarations: [
@@ -28,18 +31,19 @@ import { ProjectsComponent } from './pages/projects/projects.component';
     CardDeadlinesComponent,
     CardTeamComponent,
     ProjectsComponent,
+    ProjectCreatorComponent,
+    ProjectEditorComponent,
   ],
-  providers: [AuthGuard, AuthService, ReactiveFormsModule],
+  providers: [AuthGuard, AuthService, ProjectService],
   imports: [
     AppRoutingModule,
     FormsModule,
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'angularfs'),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
     CoreModule,
-    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,6 @@
 <div class="mt-4 mb-3 container-fluid">
   <div class="row py-1 px-3">
     <h1>Projects.</h1>
-
     <!-- Modal trigger -->
     <button
       type="button"
@@ -11,21 +10,42 @@
     >
       Create a new project
     </button>
+
+    <!-- Project Creator Modal -->
+    <div class="modal" id="project-creator" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow-sm">
+          <div class="modal-header shadow-sm">
+            <h5 class="modal-title">Create a new project</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <app-project-creator></app-project-creator>
+          </div>
+          <div class="modal-footer shadow-sm"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Project card -->
+  <!-- Project cards -->
   <div class="container-fluid pt-3 px-3">
     <div class="row">
-      <div *ngFor="let project of projects | async" class="col- m-2">
+      <div *ngFor="let project of projects" class="col- m-2">
         <div
           class="card shadow border-0 p-4"
           style="width: 22rem; height: 16rem;"
         >
           <div class="card-body p-0">
-            <h5 class="card-title">{{ project.data.name }}</h5>
-            <p class="card-text text-secondary">
-              {{ project.data.description }}
-            </p>
+            <h5 class="card-title">{{ project.name }}</h5>
+            <p class="card-text text-secondary">{{ project.description }}</p>
           </div>
           <div class="row mt-auto p-0 mx-0 mt-auto mb-0">
             <button type="button" class="btn btn-primary shadow-sm">
@@ -43,119 +63,36 @@
               Delete
             </button>
 
-            <!--Deletion Modal-->
-            <div
-              class="modal fade"
-              id="project-delete"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="project-delete-label"
-              aria-hidden="true"
-            >
+            <!-- Project Deletion Modal -->
+          <div class="modal" id="project-delete" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project-delete-label">
-                      Danger!
-                    </h5>
+                <div class="modal-content border-0 shadow-sm">
+                  <div class="modal-header shadow-sm">
+                    <h5 class="modal-title">Danger!</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-
                   <div class="modal-body">
-                    <p class="text-center">
-                      You're about to delete this project. You cannot undo this
-                      operation. Are you sure you want to continue?
-                    </p>
+                      <p class="text-center">You're about to delete a project! This operation cannot be undone. 
+                          Are you sure you want to continue?</p>
                   </div>
-
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Nevermind
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-danger"
-                      (click)="deleteProject(project.id)"
-                      data-dismiss="modal"
-                    >
-                      Yes, I'm sure
-                    </button>
+                  <div class="modal-footer shadow-sm">
+                      <button class="btn btn-secondary mr-1" data-dismiss="modal">Nevermind</button>
+                      <button class="btn btn-danger ml-1" (click)="onSubmit(project)" data-dismiss="modal">Yes, I'm sure</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Project Creator Modal -->
-<div
-  class="modal fade"
-  id="project-creator"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="project-creator-label"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="project-creator-label">
-          Create a new project
-        </h5>
-      </div>
-
-      <div class="modal-body">
-        <!-- Forms -->
-
-        <form>
-          <div class="form-group">
-            <label for="projectName">Project title</label>
-            <input
-              class="form-control"
-              [(ngModel)]="projectName"
-              name="projectName"
-              id="projectName"
-              placeholder="Enter a cool title"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="projectDescription">Project description</label>
-            <textarea
-              class="form-control"
-              [(ngModel)]="projectDescription"
-              name="projectDescription"
-              id="projectDescription"
-              placeholder="What's your project about?"
-              aria-describedby="descriptionHelp"
-              maxlength="150"
-            ></textarea>
-            <small id="descriptionHelp" class="form-text text-muted"
-              >Max. 150 Characters</small
-            >
-          </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-dismiss="modal"
-          (click)="addProject()"
-        >
-          Save changes
-        </button>
       </div>
     </div>
   </div>
