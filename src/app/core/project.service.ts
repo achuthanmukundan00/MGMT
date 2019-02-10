@@ -12,24 +12,35 @@ import { Project } from '../models/project';
 })
 export class ProjectService {
   projectsCollection: AngularFirestoreCollection<Project>;
-  projects: Observable<Project[]>;
+  projects: Project[];
   projectDoc: AngularFirestoreDocument<Project>;
 
   constructor(private afs: AngularFirestore) {
 
     this.projectsCollection = this.afs.collection('projects', ref => ref.orderBy('name', 'asc'));
-    this.projects = this.projectsCollection.snapshotChanges()
-    .pipe(map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Project;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    }));
+
   }
 
-  getProjects() {
-    return this.projects;
+  getProjects(): Promise<Project[]> {
+    return new Promise((resolve, reject) => {
+      if (this.projects) {
+        resolve(this.projects);
+      } else {
+        this.projectsCollection.snapshotChanges()
+        .pipe(map(changes => {
+          return changes.map(a => {
+            const data = a.payload.doc.data() as Project;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        })).subscribe(projects => {
+          console.log('initialized projects');
+          this.projects = projects;
+          resolve(projects);
+        });
+      }
+    });
+
   }
 
   addProject(project: Project) {
@@ -39,6 +50,11 @@ export class ProjectService {
   deleteProject(project: Project) {
     this.projectDoc = this.afs.doc(`projects/${project.id}`);
     this.projectDoc.delete();
+  }
+
+  updateProject(project: Project) {
+    this.projectDoc = this.afs.doc(`projects/${project.id}`);
+    this.projectDoc.update(project);
   }
 
 

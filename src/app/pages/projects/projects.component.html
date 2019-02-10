@@ -29,7 +29,6 @@
           <div class="modal-body">
             <app-project-creator></app-project-creator>
           </div>
-          <div class="modal-footer shadow-sm"></div>
         </div>
       </div>
     </div>
@@ -38,9 +37,9 @@
   <!-- Project cards -->
   <div class="container-fluid pt-3 px-3">
     <div class="row">
+      <div class="col- m-2" *ngFor="let project of projects">
         <div
-          *ngFor="let project of projects"
-          class="card shadow border-0 p-4 col- m-2"
+          class="card shadow border-0 p-4"
           style="width: 22rem; height: 16rem;"
         >
           <div class="card-body p-0">
@@ -51,23 +50,93 @@
             <button type="button" class="btn btn-primary shadow-sm">
               Open Project
             </button>
-            <button type="button" class="btn btn-secondary shadow-sm ml-2">
-              Edit
-            </button>           
-            
             <button
               type="button"
-              class="btn btn-danger shadow-sm ml-2"
-              (dblclick)="onSubmit(project)"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Double click to delete"
+              class="btn btn-secondary shadow-sm ml-2"
+              data-toggle="modal"
+              data-target="#editorModal"
+              (click)="editProject($event, project)"
             >
-              Delete
+              Edit
             </button>
+          </div>
 
-          
+          <!-- Editor Modal -->
+          <div
+            *ngIf="editState && projectToEdit.id == project.id"
+            class="modal fade"
+            id="editorModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="editorModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="projectName">
+                    Edit {{ project.name }}
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    (click)="clearState()"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="projectName">Project Name</label>
+                      <input
+                        type="name"
+                        class="form-control"
+                        [(ngModel)]="project.name"
+                        name="name"
+                        id="projectName"
+                        placeholder="Give your project a cool name."
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="projectDescription">Description</label>
+                      <textarea
+                        type="description"
+                        [(ngModel)]="project.description"
+                        name="description"
+                        class="form-control"
+                        maxlength="150"
+                        id="projectDescription"
+                        aria-describedby="characterLimit"
+                        placeholder="Describe what your project's about."
+                      ></textarea>
+                      <small id="characterLimit">Max. 150 Characters</small>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="updateProject(project)"
+                      data-dismiss="modal"
+                    >
+                      Save changes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger shadow-sm ml-2"
+                      (click)="onSubmit($event, project)"
+                      data-dismiss="modal"
+                    >
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

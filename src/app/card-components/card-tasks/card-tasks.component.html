@@ -1,8 +1,8 @@
-<div class="card shadow border-0 mt-4">
+<div class="card rounded-0 shadow border-0 mt-4">
     <div class="card-body">
       <div class="container-fluid row m-0 p-0">
         <h5 class="card-title mr-auto">Tasks ({{ itemCountTasks }})</h5>
-      <img *ngIf="itemCountTasks>0" src="../../../assets/baseline-delete_outline-24px (1).svg" class="delete-icon ml-auto"/>
+        <button *ngIf="selected" type="button" class="btn btn-danger ml-auto btn-sm">Delete Selected</button>
       </div>
     </div>
     <ul class="overflow-auto list-group list-group-flush mx-4">
@@ -22,7 +22,7 @@
       <form>
         <input
           type="text"
-          class="form-control shadow-sm border-0 p-2"
+          class="form-control shadow-sm border-0 rounded-0 p-2"
           name="task"
           placeholder="Enter a new task here..."
           [(ngModel)]="taskText"

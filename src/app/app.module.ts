@@ -19,7 +19,6 @@ import { CardTeamComponent } from './card-components/card-team/card-team.compone
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectService } from './core/project.service';
 import { ProjectCreatorComponent } from './pages/projects/project-creator/project-creator.component';
-import { ProjectEditorComponent } from './pages/projects/project-editor/project-editor.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { ProjectEditorComponent } from './pages/projects/project-editor/project-
     CardTeamComponent,
     ProjectsComponent,
     ProjectCreatorComponent,
-    ProjectEditorComponent,
   ],
   providers: [AuthGuard, AuthService, ProjectService],
   imports: [
