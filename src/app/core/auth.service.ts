@@ -14,7 +14,7 @@ interface User {
   uid: string;
   email: string;
   photoURL: string;
-  displayName?: string;
+  displayName: string;
   projects: string[];
 }
 
@@ -71,7 +71,7 @@ export class AuthService {
       email: user.email,
       photoURL: user.photoURL,
       displayName: user.displayName,
-      projects: []
+      projects: [],
     };
 
     return userRef.set(data, { merge: true });

@@ -1,4 +1,4 @@
-<div class="profile mt-4 mb-3">
+<div class="profile mt-4 mb-3" *ngIf="(auth.user | async) as user">
   <div class="container-fluid">
     <div class="row px-3">
       <div class="card border-0 ml-0 mr-2 p-3 col- rounded-none shadow">
