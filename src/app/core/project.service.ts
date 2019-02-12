@@ -21,28 +21,6 @@ export class ProjectService {
 
   }
 
-  getProjects(): Promise<Project[]> {
-    return new Promise((resolve, reject) => {
-      if (this.projects) {
-        resolve(this.projects);
-      } else {
-        this.projectsCollection.snapshotChanges()
-        .pipe(map(changes => {
-          return changes.map(a => {
-            const data = a.payload.doc.data() as Project;
-            data.id = a.payload.doc.id;
-            return data;
-          });
-        })).subscribe(projects => {
-          console.log('initialized projects');
-          this.projects = projects;
-          resolve(projects);
-        });
-      }
-    });
-
-  }
-
   addProject(project: Project) {
     this.projectsCollection.add(project);
   }

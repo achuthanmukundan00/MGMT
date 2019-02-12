@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../core/project.service';
 import { Project } from '../../models/project';
-
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -15,11 +15,21 @@ export class ProjectsComponent implements OnInit {
   editState = false;
   projectToEdit: Project;
 
-  constructor(private projectService: ProjectService ) {
+  constructor(private projectService: ProjectService) {
   }
 
   async ngOnInit() {
-    this.projects = await this.projectService.getProjects();
+    this.projectService.projectsCollection.snapshotChanges()
+        .pipe(map(changes => {
+          return changes.map(a => {
+            const data = a.payload.doc.data() as Project;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        })).subscribe(projects => {
+          console.log('initialized projects');
+          this.projects = projects;
+        });
   }
 
   onSubmit(event, project: Project) {
