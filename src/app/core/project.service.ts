@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore,
-         AngularFirestoreCollection,
-         AngularFirestoreDocument
-       } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Project } from '../models/project';
 
@@ -12,8 +8,10 @@ import { Project } from '../models/project';
 })
 export class ProjectService {
   projectsCollection: AngularFirestoreCollection<Project>;
-  projects: Project[];
   projectDoc: AngularFirestoreDocument<Project>;
+  currentProjectDoc: AngularFirestoreDocument<Project>;
+
+  currentProject: Project;
 
   constructor(private afs: AngularFirestore) {
 
@@ -35,6 +33,13 @@ export class ProjectService {
     this.projectDoc.update(project);
   }
 
+  getCurrentProject() {
+    return this.currentProject;
+  }
+
+  setCurrentProject(project: Project) {
+    this.currentProject  = project;
+  }
 
 }
 
