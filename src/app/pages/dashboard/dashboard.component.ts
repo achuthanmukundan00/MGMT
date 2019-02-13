@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/core/project.service';
+import { Project } from '../../models/project';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  currentProject = 'Current Project.';
+  currentProject: Project;
 
-  constructor() {}
+  constructor(private projectService: ProjectService) {
 
-  ngOnInit() {}
+  }
+
+
+  ngOnInit() {
+    this.currentProject = this.projectService.currentProject;
+  }
+
+
+
+
+
+
+
+
 }

@@ -18,7 +18,7 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectService: ProjectService) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.projectService.projectsCollection.snapshotChanges()
         .pipe(map(changes => {
           return changes.map(a => {
@@ -52,6 +52,7 @@ export class ProjectsComponent implements OnInit {
     this.clearState();
   }
 
-
-
+  setCurrentProject(project: Project) {
+    this.projectService.setCurrentProject(project);
+  }
 }

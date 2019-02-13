@@ -47,7 +47,7 @@
             <p class="card-text text-secondary">{{ project.description }}</p>
           </div>
           <div class="row mt-auto p-0 mx-0 mt-auto mb-0">
-            <button type="button" class="btn btn-primary shadow-sm">
+            <button type="button" class="btn btn-primary shadow-sm" (click)="setCurrentProject(project)" routerLink="/dashboard">
               Open Project
             </button>
             <button
