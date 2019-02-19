@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../core/project.service';
 import { Project } from '../../models/project';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../../core/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ProjectsComponent implements OnInit {
   editState = false;
   projectToEdit: Project;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private auth: AuthService) {
   }
 
   ngOnInit() {

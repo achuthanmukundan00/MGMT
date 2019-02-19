@@ -8,28 +8,29 @@ import {
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { User } from '../models/user';
 
-// Users Collection
-interface User {
-  uid: string;
-  email: string;
-  photoURL: string;
-  displayName: string;
-  projects: string[];
-}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: Observable<any>;
+  uid: string;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
   ) {
+
     // Get auth data and then get firestore user document
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.uid = user.uid;
+      }
+    });
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -42,12 +43,11 @@ export class AuthService {
   }
 
 
+
   // If error, console log
   private handleError(error) {
     console.error(error);
   }
-
-
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -76,6 +76,7 @@ export class AuthService {
 
     return userRef.set(data, { merge: true });
   }
+
   signOut() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/']);
