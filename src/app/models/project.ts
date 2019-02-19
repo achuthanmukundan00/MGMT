@@ -1,5 +1,6 @@
 export interface Project {
     id?: string;
+    userID?: string;
     name: string;
     description: string;
     deadlines?: Deadline[];

@@ -1,11 +1,30 @@
-<div class="mt-4 mb-3 container-fluid">
-  <h1 class="project-title font-weight-bold">{{ currentProject.name }}</h1>
+<div *ngIf="currentProject; then projectSelected else noneSelected">
+</div>
 
-  <div class="container-fluid p-0">
-    <div class="row px-3">
-      <app-card-tasks class="task-card mr-2 col-sm"></app-card-tasks>
-      <app-card-team class="team-card ml-2 col-sm"></app-card-team>
-      <app-card-deadlines class="deadlines-card ml-2 col-sm"></app-card-deadlines>
+<ng-template #projectSelected>
+  <div>
+    <div class="mt-4 mb-3 container-fluid">
+      <h1 class="project-title font-weight-bold">{{ currentProject.name }}</h1>
+
+      <div class="container-fluid p-0">
+        <div class="row px-3">
+          <app-card-tasks class="task-card mr-2 col-sm"></app-card-tasks>
+          <app-card-team class="team-card ml-2 col-sm"></app-card-team>
+          <app-card-deadlines
+            class="deadlines-card ml-2 col-sm"
+          ></app-card-deadlines>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #noneSelected>
+  <div class="col mt-5">
+      <h1 class="text-center">You haven't selected a project yet.</h1>
+      <p class="text-center">Go the the projects menu, and get to work on a project</p>
+      <div class="col col text-center">
+      <button class="btn btn-primary shadow-sm" routerLink="/projects">Go to projects</button>
+      </div>
+  </div>  
+</ng-template>

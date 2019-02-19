@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Project } from '../models/project';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ export class ProjectService {
 
   currentProject: Project;
 
-  constructor(private afs: AngularFirestore) {
-
-    this.projectsCollection = this.afs.collection('projects', ref => ref.orderBy('name', 'asc'));
+  constructor(private afs: AngularFirestore, private auth: AuthService) {
+    this.projectsCollection = this.afs.collection('projects', ref => ref.where('userID', '==', auth.uid).orderBy('name', 'asc'));
 
   }
 
   addProject(project: Project) {
+    project.userID = this.auth.uid;
     this.projectsCollection.add(project);
   }
 

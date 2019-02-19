@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../../core/project.service';
 import { Project } from '../../../models/project';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-project-creator',
@@ -14,7 +15,7 @@ export class ProjectCreatorComponent implements OnInit {
    description: ''
   };
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private auth: AuthService) { }
 
   ngOnInit() {
 
