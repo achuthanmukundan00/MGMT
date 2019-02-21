@@ -24,6 +24,24 @@
         </div>
       </div>
       <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
+        
+        <div class="container-fluid pt-3 px-3">
+          <h5>Projects</h5>
+          <div class="row">
+            <div class="col- m-2" *ngFor="let project of projects">
+              <div
+                class="card shadow border-0 p-4"
+              >
+                <div class="card-body p-0">
+                  <h5 class="card-title">{{ project.name }}</h5>
+                  <small class="card-text text-secondary">{{ project.description }}</small>
+                </div>
+      
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <button class="btn btn-danger mt-auto shadow-sm" (click)="signOut()">Logout</button>
       </div>
     </div>

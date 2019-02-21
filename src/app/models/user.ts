@@ -1,3 +1,5 @@
+import { Project } from './project';
+
 // Users Collection
 export interface User {
     uid: string;

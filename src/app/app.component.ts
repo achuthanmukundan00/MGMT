@@ -1,4 +1,4 @@
-import { AuthService } from './core/auth.service';
+import { AuthService } from './core/authentication/auth.service';
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';

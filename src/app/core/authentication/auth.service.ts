@@ -8,7 +8,8 @@ import {
 } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User } from '../models/user';
+import { User } from '../../models/user';
+import { Project } from '../../models/project';
 
 
 
