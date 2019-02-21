@@ -15,7 +15,6 @@ export class ProjectService {
   projectsCollection: AngularFirestoreCollection<Project>;
   projectDoc: AngularFirestoreDocument<Project>;
   currentProjectDoc: AngularFirestoreDocument<Project>;
-
   currentProject: Project;
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
@@ -39,11 +38,19 @@ export class ProjectService {
     this.projectDoc.update(project);
   }
 
+
   getCurrentProject() {
     return this.currentProject;
   }
 
   setCurrentProject(project: Project) {
     this.currentProject = project;
+    console.log(this.currentProject);
   }
+
+  updateTasks(project: Project, tasks: string[]) {
+    project.tasks = tasks;
+    this.updateProject(project);
+  }
+
 }

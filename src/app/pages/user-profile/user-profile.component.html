@@ -2,49 +2,45 @@
   <div class="container-fluid">
     <div class="row px-3">
       <div class="card border-0 ml-0 mr-2 p-3 col- rounded-none shadow">
-        <img
-          class="profile-pic rounded"
+        <div class="text-center">
+          <img
+          class="profile-pic rounded-circle"
           [src]="user.photoURL"
-          style="width: 200px; height: 200px;"
+          style="width: 10rem; height: 10rem;"
         />
+        </div>
+        <h4 class="font-weight-bold text-center py-3 border-bottom">{{ user.displayName }}</h4>
         <div class="media-body mt-3">
-          <h4 class="font-weight-bold">{{ user.displayName }}</h4>
-          <div class="form-group mt-3 rounded">
-            <textarea
-              id="bio"
-              rows="6"
-              placeholder="Add a short bio"
-              class="bio w-100"
-            ></textarea>
-          </div>
-          <div class="container-fluid row">
-              <button class="btn btn-dark mt-auto shadow-sm mr-2">Edit</button>
-              <button class="btn btn-success mt-auto shadow-sm">Submit</button>
-          </div>
         </div>
       </div>
       <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
-        
-        <div class="container-fluid pt-3 px-3">
-          <h5>Projects</h5>
-          <div class="row">
-            <div class="col- m-2" *ngFor="let project of projects">
-              <div
-                class="card shadow border-0 p-4"
-              >
-                <div class="card-body p-0">
-                  <h5 class="card-title">{{ project.name }}</h5>
-                  <small class="card-text text-secondary">{{ project.description }}</small>
+        <div class="container-fluid py-3 px-3">
+          <h5 class="font-weight-bold">Projects</h5>
+          <ul class="px-2" style="list-style: none;">
+            <li class="d-flex-column width-full border-bottom py-2" *ngFor="let project of projects">
+              <div class="d-inline-flex align-items-end mt-2">
+                <h5 class="card-title m-0">{{ project.name }}</h5>
+                <div class="ml-2">
+                  <img src="../../../assets/group_18px.svg">
+                  <small class="text-secondary">
+                    1
+                    <!--Count number of team members-->
+                  </small>
                 </div>
-      
               </div>
-            </div>
-          </div>
-        </div>
+              <div>
+                <small class="d-inline-block card-text text-secondary mt-2">{{ project.description }}</small>
+              </div>
+              
+            </li>
+          </ul>
         
-        <button class="btn btn-danger mt-auto shadow-sm" (click)="signOut()">Logout</button>
+        </div>
+
+        <button class="btn btn-danger mt-auto shadow-sm" (click)="signOut()">
+          Logout
+        </button>
       </div>
     </div>
   </div>
-
 </div>

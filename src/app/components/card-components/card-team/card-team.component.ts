@@ -16,4 +16,8 @@ export class CardTeamComponent implements OnInit {
   ngOnInit() {
     this.itemCountTeam = this.team.length;
   }
+
+  addMember() {
+    console.log('Feature not yet available');
+  }
 }

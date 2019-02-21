@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TeamComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('Feature not yet available');
+  }
 }
