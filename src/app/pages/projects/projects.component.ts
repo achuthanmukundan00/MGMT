@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../core/project.service';
+import { ProjectService } from '../../core/services/project.service';
 import { Project } from '../../models/project';
 import { map } from 'rxjs/operators';
-import { AuthService } from '../../core/auth.service';
+import { AuthService } from '../../core/authentication/auth.service';
+import { User } from 'firebase';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from '../../core/auth.service';
 
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[];
+  public projects: Project[];
   editState = false;
   projectToEdit: Project;
 

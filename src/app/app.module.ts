@@ -4,21 +4,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './core/header/navbar/navbar.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { AuthGuard } from './core/auth.guard';
-import { AuthService } from './core/auth.service';
-import { EmptyNavbarComponent } from './empty-navbar/empty-navbar.component';
-import { CardTasksComponent } from './card-components/card-tasks/card-tasks.component';
-import { CardDeadlinesComponent } from './card-components/card-deadlines/card-deadlines.component';
-import { CardTeamComponent } from './card-components/card-team/card-team.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AuthService } from './core/authentication/auth.service';
+import { EmptyNavbarComponent } from './core/header/empty-navbar/empty-navbar.component';
+import { CardTasksComponent } from './components/card-components/card-tasks/card-tasks.component';
+import { CardDeadlinesComponent } from './components/card-components/card-deadlines/card-deadlines.component';
+import { CardTeamComponent } from './components/card-components/card-team/card-team.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
-import { ProjectService } from './core/project.service';
-import { ProjectCreatorComponent } from './pages/projects/project-creator/project-creator.component';
+import { ProjectService } from './core/services/project.service';
+import { ProjectCreatorComponent } from './components/project-creator/project-creator.component';
 
 @NgModule({
   declarations: [
