@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/core/services/project.service';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-card-tasks',
@@ -6,18 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-tasks.component.scss']
 })
 export class CardTasksComponent implements OnInit {
-  itemCountTasks: number;
+  taskCount: number;
   taskText: string = '';
-  tasks = [];
-  constructor() {}
+  tasks: string[] = this.projectService.currentProject.tasks;
+  currentProject: Project;
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit() {
-    this.itemCountTasks = this.tasks.length;
+    this.currentProject = this.projectService.currentProject;
+    if (this.tasks !== null) {
+      this.taskCount = this.tasks.length;
+    } else {
+      this.taskCount = 0;
+    }
+
   }
 
-  addItem() {
+  addTask() {
     this.tasks.push(this.taskText);
     this.taskText = '';
-    this.itemCountTasks = this.tasks.length;
+    this.projectService.updateTasks(this.currentProject, this.tasks);
+    this.taskCount = this.currentProject.tasks.length;
+  }
+
+  deleteTask(i) {
+    this.tasks.splice(i, 1);
+    this.projectService.updateTasks(this.currentProject, this.tasks);
+    this.taskCount = this.currentProject.tasks.length;
   }
 }

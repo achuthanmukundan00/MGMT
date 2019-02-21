@@ -1,27 +1,39 @@
-<div *ngIf="(auth.user | async) as user">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm p-0">
-    <a class="navbar-brand shadow-sm p-4" routerLink="dashboard">mgmt.</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item mx-2 ">
-          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-        </li>
-
-        <li class="nav-item mx-2 ">
-          <a class="nav-link" routerLink="/projects">Projects</a>
-        </li>
-
-        <li class="nav-item mx-2 ">
-          <a class="nav-link" routerLink="/team">Team</a>
-        </li>
-      </ul>
+<div *ngIf="(auth.user | async) as user; else notAuthenticated">
+  <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-dark shadow-sm">
+    <a
+      class="navbar-brand shadow-sm p-4"
+      routerLink="dashboard"
+      style="font-family: 'ZCOOL KuaiLe', cursive; font-size: 18px;"
+      >mgmt.
+    </a>
+    <div class="d-inline-flex m-0 p-0">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
+        <a class="nav-item nav-link" routerLink="/projects">Projects</a>
+        <a class="nav-item nav-link" routerLink="/team">Team</a>
+      </div>
     </div>
-    <div class="ml-auto mr-3">
+    <div class="d-inline-flex ml-auto mr-2 my-2">
       <img
         [src]="user.photoURL"
-        class="profile-picture rounded-circle"
-        routerLink="profile"
+        class="img-fluid profile-picture rounded-circle"
+        style="width: 3.5rem; height: 3.5rem;"
+        routerLink="/profile"
       />
     </div>
   </nav>
 </div>
+
+<ng-template #notAuthenticated>
+  <div>
+    <nav class="navbar navbar-expand-lg p-0 navbar-light bg-white shadow-sm">
+      <a
+        class="navbar-brand shadow-sm p-4"
+        routerLink="dashboard"
+        style="font-family: 'ZCOOL KuaiLe', cursive;
+      font-size: 18px;"
+        >mgmt.</a
+      >
+    </nav>
+  </div>
+</ng-template>

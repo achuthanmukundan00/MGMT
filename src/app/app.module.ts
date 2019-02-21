@@ -12,7 +12,6 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AuthService } from './core/authentication/auth.service';
-import { EmptyNavbarComponent } from './core/header/empty-navbar/empty-navbar.component';
 import { CardTasksComponent } from './components/card-components/card-tasks/card-tasks.component';
 import { CardDeadlinesComponent } from './components/card-components/card-deadlines/card-deadlines.component';
 import { CardTeamComponent } from './components/card-components/card-team/card-team.component';
@@ -25,7 +24,6 @@ import { ProjectCreatorComponent } from './components/project-creator/project-cr
     AppComponent,
     NavbarComponent,
     routingComponents,
-    EmptyNavbarComponent,
     CardTasksComponent,
     CardDeadlinesComponent,
     CardTeamComponent,
