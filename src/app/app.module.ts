@@ -18,6 +18,8 @@ import { CardTeamComponent } from './components/card-components/card-team/card-t
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectService } from './core/services/project.service';
 import { ProjectCreatorComponent } from './components/project-creator/project-creator.component';
+import { NgAisModule } from 'angular-instantsearch';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ProjectCreatorComponent } from './components/project-creator/project-cr
     AngularFireAuthModule,
     AngularFireStorageModule,
     CoreModule,
+    NgAisModule.forRoot(),
+    CommonModule,
   ],
   bootstrap: [AppComponent]
 })
