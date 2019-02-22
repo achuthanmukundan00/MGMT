@@ -4,48 +4,18 @@
 
 <!-- User not logged in-->
 <ng-template #guest>
-  <div class="container-fluid p-0">
-    <div class="row m-5">
-      <div class="col-md">
-        <section class="banner">
-          <h1 class="banner-text1">project</h1>
-          <h1 class="banner-text2 mb-5">mgmt.</h1>
-          <h1 class="banner-text1 ml-5">at its finest.</h1>
-        </section>
+  <div class="container-fluid py-5">
+      <div class="d-flex justify-content-center py-5" style="flex-direction:column; width: 100%">
+        <h1 class="text-center" style="font-size: 12vw; white-space: nowrap; overflow: hidden;">project mgmt.</h1>
+        <h3 class="text-center" style="font-size: 6vw;">at its finest.</h3>
+        <button
+          type="button"
+          class="btn align-self-center btn-light border-0 rounded-0 m-3 p-4 shadow"
+          (click)="signIn()">
+          <img src="../../../assets/G_Logo.svg" class="ml-0 mr-3 my-1" />
+          <a class="text-center font-weight-bold">Sign In</a>
+        </button>
       </div>
-
-      <div class="col-md m-5 p-0">
-        <h3 class="header-secondary">Made for students. By students.</h3>
-        <div class="row m-0 p-0">
-          <p class="logo mr-1 mb-0 pb-0">mgmt</p>
-          <p class="paragraph m-0">
-            is a project management application created specifically for
-            students at
-          </p>
-        </div>
-        <p class="mb-3">
-          academic institutions around the world. The app tracks project
-          deadlines, allows you to create task lists corresponding to those
-          deadlines, and track team member contributions.
-        </p>
-        <p>
-          Countless factors could botch your project. Let's take the
-          organizational load off of your shoulders so you can focus on making
-          something awesome.
-        </p>
-
-        <div class="buttons my-3 row">
-          <button
-            type="button"
-            class="btn btn-light border-0 rounded-0 m-3 shadow"
-            (click)="signIn()"
-          >
-            <img src="../../../assets/G_Logo.svg" class="ml-0 mr-3 my-1" />
-            <a class="">Sign In</a>
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </ng-template>
 

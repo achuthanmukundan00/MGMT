@@ -1,18 +1,34 @@
 <div *ngIf="(auth.user | async) as user; else notAuthenticated">
   <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-dark shadow-sm">
     <a
-      class="navbar-brand shadow-sm p-4"
+      class="navbar-brand shadow p-4"
       routerLink="dashboard"
       style="font-family: 'ZCOOL KuaiLe', cursive; font-size: 18px;"
       >mgmt.
     </a>
-    <div class="d-inline-flex m-0 p-0">
+    <div class="d-inline-flex mr-2 p-0">
       <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
         <a class="nav-item nav-link" routerLink="/projects">Projects</a>
         <a class="nav-item nav-link" routerLink="/team">Team</a>
       </div>
     </div>
+
+    <ais-instantsearch [config]="searchConfig">
+      <ais-search-box (change)="searchChanged($event)"></ais-search-box>
+      <ais-hits *ngIf="showResults">
+        <ng-template let-hits="hits">
+          <span class="results position-absolute shadow">
+            <ul class="list-group" *ngFor="let hit of hits">
+              <li class="list-group-item border-0 p-0">
+                <a class="user-result d-flex text-primary p-3 border-bottom">{{ hit.displayName }}</a>
+              </li>
+            </ul>
+          </span>
+        </ng-template>
+      </ais-hits>
+    </ais-instantsearch>
+
     <div class="d-inline-flex ml-auto mr-2 my-2">
       <img
         [src]="user.photoURL"
@@ -30,10 +46,9 @@
       <a
         class="navbar-brand shadow-sm p-4"
         routerLink="dashboard"
-        style="font-family: 'ZCOOL KuaiLe', cursive;
-      font-size: 18px;"
-        >mgmt.</a
-      >
+        style="font-family: 'ZCOOL KuaiLe', cursive; font-size: 18px;"
+        >mgmt.
+      </a>
     </nav>
   </div>
 </ng-template>
