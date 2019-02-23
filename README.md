@@ -1,6 +1,6 @@
 # MGMT
 A project management app built for students.
-*Note: this app is in progress and base functionality is not yet finished.*
+*Note: this app is in progress and base functionality is not yet finished. Additionally, the app is not yet fully responsive for mobile use.*
 
 Built with Angular 7, Bootstrap 4, and Firebase. Search features created using Algolia.
 
