@@ -19,7 +19,8 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectService } from './core/services/project.service';
 import { ProjectCreatorComponent } from './components/project-creator/project-creator.component';
 import { NgAisModule } from 'angular-instantsearch';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {CommonModule} from '@angular/common';
     CardTeamComponent,
     ProjectsComponent,
     ProjectCreatorComponent,
+    FooterComponent,
   ],
   providers: [AuthGuard, AuthService, ProjectService],
   imports: [
