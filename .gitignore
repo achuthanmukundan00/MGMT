@@ -42,3 +42,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+bfg-1\.13\.0\.jar
+src/environments/environment.ts
+src/environments/environment.prod.ts
