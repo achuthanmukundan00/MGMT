@@ -1,15 +1,16 @@
-<div id="container">
+<div id="header">
+  <app-navbar> </app-navbar>
+</div>
 
-  <div id="header">
-    <app-navbar> </app-navbar>
-  </div>
-  
-  <div id="body">
-    <router-outlet></router-outlet>
-  </div>
-  
-  <div id="footer">
-    <app-footer></app-footer>
-  </div>
+<div id="container-fluid">
+  <router-outlet></router-outlet>
+</div>
 
+<div class="footer d-flex justify-content-center mt-5 mb-4">
+  <p class="align-middle">
+    Made with
+    <img src="../assets/angular-512.png" style="width: 1rem" />
+    <img src="../assets/firebase.png" style="width: 1rem" /> by
+    <a href="https://github.com/achuthanmukundan00">Achu Mukundan</a>
+  </p>
 </div>
