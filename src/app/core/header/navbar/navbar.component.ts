@@ -2,6 +2,9 @@ import { AuthService } from '../../authentication/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { Hit } from 'angular-instantsearch/instantsearch/instantsearch';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   showResults = false;
 
-  constructor(public auth: AuthService, private afs: AngularFirestore) {}
+  constructor(public auth: AuthService, private afs: AngularFirestore, private router: Router) {}
 
   ngOnInit() {}
 
@@ -25,6 +28,12 @@ export class NavbarComponent implements OnInit {
     } else {
       this.showResults = false;
     }
+  }
+
+  onSelect(hit) {
+    const str = 'method called';
+    console.log(str);
+    this.router.navigate(['/users', hit.uid]);
   }
 
 

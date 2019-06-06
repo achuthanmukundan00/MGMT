@@ -8,16 +8,12 @@ import { AuthService } from '../../../core/authentication/auth.service';
 })
 export class CardTeamComponent implements OnInit {
   itemCountTeam: number = 0;
-  teamText: string = '';
   team = [];
 
   constructor(public auth: AuthService) {}
 
   ngOnInit() {
     this.itemCountTeam = this.team.length;
-  }
-
-  addMember() {
-    console.log('Feature not yet available');
+    console.log(this.itemCountTeam);
   }
 }

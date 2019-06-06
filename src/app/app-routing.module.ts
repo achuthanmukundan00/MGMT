@@ -8,6 +8,7 @@ import { TeamComponent } from './pages/team/team.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
 
 
 
@@ -17,7 +18,7 @@ const routes: Routes = [
     component: LandingPageComponent
   },
   {
-    path: 'profile',
+    path: 'my-profile',
     component: UserProfileComponent,
     canActivate: [AuthGuard]
   },
@@ -36,6 +37,11 @@ const routes: Routes = [
     component: ProjectsComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'users/:uid',
+    component: PublicProfileComponent,
+    canActivate: [AuthGuard]
+  },
 
 ];
 
@@ -48,5 +54,6 @@ export const routingComponents = [
   LandingPageComponent,
   UserProfileComponent,
   TeamComponent,
-  DashboardComponent
+  DashboardComponent,
+  PublicProfileComponent
 ];

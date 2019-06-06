@@ -1,5 +1,6 @@
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -21,6 +22,7 @@ import { ProjectCreatorComponent } from './components/project-creator/project-cr
 import { NgAisModule } from 'angular-instantsearch';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './core/footer/footer.component';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { FooterComponent } from './core/footer/footer.component';
     ProjectsComponent,
     ProjectCreatorComponent,
     FooterComponent,
+    PublicProfileComponent,
   ],
   providers: [AuthGuard, AuthService, ProjectService],
   imports: [
     AppRoutingModule,
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angularfs'),
     AngularFirestoreModule,
     AngularFireAuthModule,

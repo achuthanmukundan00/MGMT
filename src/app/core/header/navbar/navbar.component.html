@@ -19,9 +19,9 @@
       <ais-hits *ngIf="showResults">
         <ng-template let-hits="hits">
           <span class="results position-absolute shadow">
-            <ul class="list-group" *ngFor="let hit of hits">
-              <li class="list-group-item border-0 p-0">
-                <div class="media p-2 border-bottom">
+            <ul class="list-group">
+              <li class="list-group-item border-0 p-0" *ngFor="let hit of hits">
+                <div class="media p-2 border-bottom" (click)="onSelect(hit)">
                   <img [src]="hit.photoURL" class="img rounded-circle align-self-center" style="width: 2rem; height: 2rem;">
                   <a class="user-result d-inline-flex align-middle text-primary p-2">{{ hit.displayName }}</a>
                 </div>
@@ -37,7 +37,7 @@
         [src]="user.photoURL"
         class="img-fluid profile-picture rounded-circle"
         style="width: 3.5rem; height: 3.5rem;"
-        routerLink="/profile"
+        routerLink="/my-profile"
       />
     </div>
   </nav>
