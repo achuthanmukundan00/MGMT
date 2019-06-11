@@ -21,9 +21,9 @@
           <span class="results position-absolute shadow">
             <ul class="list-group">
               <li class="list-group-item border-0 p-0" *ngFor="let hit of hits">
-                <div class="media p-2 border-bottom" (click)="onSelect(hit)">
+                <div class="media p-2 border-bottom">
                   <img [src]="hit.photoURL" class="img rounded-circle align-self-center" style="width: 2rem; height: 2rem;">
-                  <a class="user-result d-inline-flex align-middle text-primary p-2">{{ hit.displayName }}</a>
+                  <a [href]="/users/hit.uid" class="user-result d-inline-flex align-middle text-primary p-2">{{ hit.displayName }}</a>
                 </div>
               </li>
             </ul>
