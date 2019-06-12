@@ -20,10 +20,10 @@
         <ng-template let-hits="hits">
           <span class="results position-absolute shadow">
             <ul class="list-group">
-              <li class="list-group-item border-0 p-0" *ngFor="let hit of hits">
-                <div class="media p-2 border-bottom">
+              <li class="list-group-item p-0" *ngFor="let hit of hits" (click)="onSelect(hit)">
+                <div class="media px-2 py-3">
                   <img [src]="hit.photoURL" class="img rounded-circle align-self-center" style="width: 2rem; height: 2rem;">
-                  <a [href]="hit.uid" class="user-result d-inline-flex align-middle text-primary p-2">{{ hit.displayName }}</a>
+                  <a class="user-result d-inline-flex align-middle text-primary p-2">{{ hit.displayName }}</a>
                 </div>
               </li>
             </ul>

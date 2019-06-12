@@ -1,7 +1,7 @@
-<div class="profile mt-4 mb-3" *ngIf="(auth.user | async) as user">
+<div class="profile p-4" *ngIf="(auth.user | async) as user">
   <div class="container-fluid">
-    <div class="row px-3">
-      <div class="card border-0 ml-0 mr-2 p-3 col- rounded-none shadow">
+    <div class="row">
+      <div class="card col- border-0 p-3 rounded-none shadow">
         <div class="text-center">
           <img
           class="profile-pic rounded-circle"
@@ -9,8 +9,11 @@
           style="width: 10rem; height: 10rem;"
         />
         </div>
-        <h4 class="font-weight-bold text-center py-3 border-bottom">{{ user.displayName }}</h4>
-        <div class="media-body mt-3">
+        <h4 class="font-weight-bold text-center py-2 m-0 border-bottom">{{ user.displayName }}</h4>
+        <div class="media-body">
+          <button class="btn btn-danger btn-block shadow-sm mt-3" (click)="signOut()">
+            Logout
+          </button>
         </div>
       </div>
       <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
@@ -36,10 +39,6 @@
           </ul>
         
         </div>
-
-        <button class="btn btn-danger mt-auto shadow-sm" (click)="signOut()">
-          Logout
-        </button>
       </div>
     </div>
   </div>
