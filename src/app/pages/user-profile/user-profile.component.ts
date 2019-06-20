@@ -25,8 +25,8 @@ export class UserProfileComponent implements OnInit {
             return data;
           });
         })).subscribe(projects => {
-          console.log('initialized projects');
           this.projects = projects;
+          console.log('initialized projects');
         });
   }
 

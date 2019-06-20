@@ -42,9 +42,6 @@ export class AuthService {
       })
     );
   }
-
-
-
   // If error, console log
   private handleError(error) {
     console.error(error);

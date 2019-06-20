@@ -16,10 +16,11 @@ export class ProjectService {
   projectDoc: AngularFirestoreDocument<Project>;
   currentProjectDoc: AngularFirestoreDocument<Project>;
   currentProject: Project;
+  public uid$: String;
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
     this.projectsCollection = this.afs.collection('projects', ref =>
-      ref.where('userID', '==', auth.uid).orderBy('name', 'asc')
+      ref.where('userID', '==', this.uid$).orderBy('name', 'asc')
     );
   }
 

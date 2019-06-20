@@ -1,1 +1,44 @@
-<h4>works</h4>
+<div class="profile p-4" *ngIf="(selectedUser$ | async) as user;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="card col- border-0 p-3 rounded-none shadow">
+          <div class="text-center">
+            <img
+            class="profile-pic rounded-circle"
+            [src]="user.photoURL"
+            style="width: 10rem; height: 10rem;"
+          />
+          </div>
+          <h4 class="font-weight-bold text-center py-2 m-0 border-bottom">{{ user.displayName }}</h4>
+          <div class="media-body">
+              
+          </div>
+        </div>
+        <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
+          <div class="container-fluid py-3 px-3">
+            <h5 class="font-weight-bold">Projects</h5>
+            <ul class="px-2" style="list-style: none;">
+              <li class="d-flex-column width-full border-bottom py-2" *ngFor="let project of projects">
+                <div class="d-inline-flex align-items-end mt-2">
+                  <h5 class="card-title m-0">{{ project.name }}</h5>
+                  <div class="ml-2">
+                    <img src="../../../assets/group_18px.svg">
+                    <small class="text-secondary">
+                      1
+                      <!--Count number of team members-->
+                    </small>
+                  </div>
+                </div>
+                <div>
+                  <small class="d-inline-block card-text text-secondary mt-2">{{ project.description }}</small>
+                </div>
+                
+              </li>
+            </ul>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
