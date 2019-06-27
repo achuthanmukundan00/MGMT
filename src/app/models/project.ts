@@ -5,6 +5,7 @@ export interface Project {
     description: string;
     tasks?: string[];
     deadlines?: Deadline[];
+    members?: string[];
 }
 
 export interface Deadline {

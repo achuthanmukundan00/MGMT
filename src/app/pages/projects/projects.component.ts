@@ -21,17 +21,24 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRequiredProjects();   
+  }
+
+ 
+
+  private getRequiredProjects() {
+    this.projectService.getProjects(this.auth.uid);
     this.projectService.projectsCollection.snapshotChanges()
-        .pipe(map(changes => {
-          return changes.map(a => {
-            const data = a.payload.doc.data() as Project;
-            data.id = a.payload.doc.id;
-            return data;
-          });
-        })).subscribe(projects => {
-          console.log('initialized projects');
-          this.projects = projects;
+      .pipe(map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Project;
+          data.id = a.payload.doc.id;
+          return data;
         });
+      })).subscribe(projects => {
+        console.log('initialized projects');
+        this.projects = projects;
+      });
   }
 
   onSubmit(event, project: Project) {

@@ -10,24 +10,31 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  projects: Project[];
+  private projects: Project[];
 
 
   constructor (public auth: AuthService, private projectService: ProjectService) {
+    
   }
 
   ngOnInit() {
+    this.getRequiredProjects();   
+  }
+
+  
+  private getRequiredProjects() {
+    this.projectService.getProjects(this.auth.uid);
     this.projectService.projectsCollection.snapshotChanges()
-        .pipe(map(changes => {
-          return changes.map(a => {
-            const data = a.payload.doc.data() as Project;
-            data.id = a.payload.doc.id;
-            return data;
-          });
-        })).subscribe(projects => {
-          this.projects = projects;
-          console.log('initialized projects');
+      .pipe(map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Project;
+          data.id = a.payload.doc.id;
+          return data;
         });
+      })).subscribe(projects => {
+        console.log('initialized projects');
+        this.projects = projects;
+      });
   }
 
   signOut() {

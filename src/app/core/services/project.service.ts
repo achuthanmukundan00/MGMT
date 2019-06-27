@@ -7,6 +7,8 @@ import {
 import { map } from 'rxjs/operators';
 import { Project } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
+import { User } from '../../models/user';
+import { stringify } from '@angular/core/src/render3/util';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +18,17 @@ export class ProjectService {
   projectDoc: AngularFirestoreDocument<Project>;
   currentProjectDoc: AngularFirestoreDocument<Project>;
   currentProject: Project;
-  public uid$: String;
+
+
+  projectToAddMemberDoc: AngularFirestoreDocument<Project>;
+  projectToAddMember: Project;
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
-    this.projectsCollection = this.afs.collection('projects', ref =>
-      ref.where('userID', '==', this.uid$).orderBy('name', 'asc')
-    );
   }
 
   addProject(project: Project) {
     project.userID = this.auth.uid;
+    project.members = [this.auth.uid];
     this.projectsCollection.add(project);
   }
 
@@ -46,7 +49,6 @@ export class ProjectService {
 
   setCurrentProject(project: Project) {
     this.currentProject = project;
-    console.log(this.currentProject);
   }
 
   updateTasks(project: Project, tasks: string[]) {
@@ -54,4 +56,9 @@ export class ProjectService {
     this.updateProject(project);
   }
 
+  getProjects(uid: string) {
+    this.projectsCollection = this.afs.collection('projects', ref =>
+      ref.where('members', 'array-contains', uid).orderBy('name', 'asc')
+    );
+  }
 }

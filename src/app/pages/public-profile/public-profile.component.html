@@ -1,44 +1,57 @@
 <div class="profile p-4" *ngIf="(selectedUser$ | async) as user;">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="card col- border-0 p-3 rounded-none shadow">
-          <div class="text-center">
-            <img
-            class="profile-pic rounded-circle"
-            [src]="user.photoURL"
-            style="width: 10rem; height: 10rem;"
-          />
-          </div>
-          <h4 class="font-weight-bold text-center py-2 m-0 border-bottom">{{ user.displayName }}</h4>
-          <div class="media-body">
-              
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card col- border-0 p-3 rounded-none shadow">
+        <div class="text-center">
+          <img class="profile-pic rounded-circle" [src]="user.photoURL" style="width: 10rem; height: 10rem;" />
+        </div>
+        <h4 class="font-weight-bold text-center pt-3 pb-2 m-0 border-bottom">{{ user.displayName }}</h4>
+        <div class="media-body pt-3 pb-1 ">
+          <button type="button" class="btn btn-block btn-success shadow-sm m-0" data-toggle="modal"
+            data-target="#addToProjectModal" (click)="getMyProjects()">Add to a Project</button>
+
+          <!-- "Add to Project" Modal -->
+          <div class="modal fade" id="addToProjectModal" tabindex="-1" role="dialog"
+            aria-labelledby="addToProjectModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addToProjectModalLabel">Which project will you add {{ user.displayName }}
+                    to?</h5>
+                </div>
+                <div class="modal-body">
+                  <button class="btn btn-block btn-light px-2 py-3 m-0" *ngFor="let myProject of myProjects"
+                    (click)="addUserToProject(user, myProject)">{{ myProject.name }}</button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
-          <div class="container-fluid py-3 px-3">
-            <h5 class="font-weight-bold">Projects</h5>
-            <ul class="px-2" style="list-style: none;">
-              <li class="d-flex-column width-full border-bottom py-2" *ngFor="let project of projects">
-                <div class="d-inline-flex align-items-end mt-2">
-                  <h5 class="card-title m-0">{{ project.name }}</h5>
-                  <div class="ml-2">
-                    <img src="../../../assets/group_18px.svg">
-                    <small class="text-secondary">
-                      1
-                      <!--Count number of team members-->
-                    </small>
-                  </div>
+      </div>
+      <div class="card border-0 p-3 ml-2 col-lg rounded-none shadow">
+        <div class="container-fluid py-3 px-3">
+          <h5 class="font-weight-bold">Projects</h5>
+          <ul class="px-2" style="list-style: none;">
+            <li class="d-flex-column width-full border-bottom py-2" *ngFor="let project of projects">
+              <div class="d-inline-flex align-items-end mt-2">
+                <h5 class="card-title m-0">{{ project.name }}</h5>
+                <div class="ml-2">
+                  <img src="../../../assets/group_18px.svg">
+                  <small class="text-secondary">
+                    2
+                  </small>
                 </div>
-                <div>
-                  <small class="d-inline-block card-text text-secondary mt-2">{{ project.description }}</small>
-                </div>
-                
-              </li>
-            </ul>
-          
-          </div>
+              </div>
+              <div>
+                <small class="d-inline-block card-text text-secondary mt-2">{{ project.description }}</small>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
