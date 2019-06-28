@@ -6,6 +6,7 @@ import { AuthService } from '../../core/authentication/auth.service';
 import { User } from 'firebase';
 
 
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',

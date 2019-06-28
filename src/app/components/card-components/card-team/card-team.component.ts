@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/authentication/auth.service';
+import { ProjectService } from 'src/app/core/services/project.service';
+import { User } from 'src/app/models/user';
+import { Observable } from 'rxjs';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-card-team',
@@ -7,13 +15,14 @@ import { AuthService } from '../../../core/authentication/auth.service';
   styleUrls: ['./card-team.component.scss']
 })
 export class CardTeamComponent implements OnInit {
-  itemCountTeam: number = 0;
-  team = [];
+  members: User[];
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, public projectService: ProjectService, public afs: AngularFirestore) {
+    this.projectService.getMembers();
+    this.members = this.projectService.membersUserArray;
+  }
 
   ngOnInit() {
-    this.itemCountTeam = this.team.length;
-    console.log(this.itemCountTeam);
+    
   }
 }

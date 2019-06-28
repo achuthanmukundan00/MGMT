@@ -4,7 +4,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { ProjectService } from '../../core/services/project.service';
 import { map } from 'rxjs/operators';

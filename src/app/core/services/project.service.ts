@@ -7,8 +7,8 @@ import {
 import { map } from 'rxjs/operators';
 import { Project } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
-import { User } from '../../models/user';
-import { stringify } from '@angular/core/src/render3/util';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,10 @@ export class ProjectService {
 
   projectToAddMemberDoc: AngularFirestoreDocument<Project>;
   projectToAddMember: Project;
+
+  projectMembers: Observable<User>[] = [];
+  membersUserArray: User[] = [];
+
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
   }
@@ -60,5 +64,17 @@ export class ProjectService {
     this.projectsCollection = this.afs.collection('projects', ref =>
       ref.where('members', 'array-contains', uid).orderBy('name', 'asc')
     );
+  }
+
+  getMembers() {
+    for(let i = 0; i < this.currentProject.members.length; i++) {
+      this.projectMembers.push(this.afs.doc<User>(`users/${this.currentProject.members[i]}`).valueChanges());
+    }
+
+    for(let i = 0; i < this.projectMembers.length; i++) {
+      this.projectMembers[i].subscribe( member => {
+        this.membersUserArray[i] = member;
+      });
+    }
   }
 }

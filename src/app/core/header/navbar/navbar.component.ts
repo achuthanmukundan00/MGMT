@@ -31,8 +31,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onSelect(hit) {
-    const str = 'method called';
-    console.log(str);
     this.router.navigate(['/users', hit.uid]);
   }
 

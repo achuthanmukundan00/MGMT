@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../core/services/project.service';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-team',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
-  constructor() {}
+  currentProject: Project = this.projectService.currentProject;
+
+  constructor(public projectService: ProjectService) {
+    
+  }
 
   ngOnInit() {
-    console.log('Feature not yet available');
   }
 }

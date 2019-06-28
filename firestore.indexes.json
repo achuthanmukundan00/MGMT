@@ -5,6 +5,20 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
+          "fieldPath": "members",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "name",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "projects",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
           "fieldPath": "userID",
           "order": "ASCENDING"
         },
