@@ -1,7 +1,7 @@
 <div *ngIf="(auth.user | async) as user; else notAuthenticated">
   <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-dark shadow-sm">
     <a
-      class="navbar-brand shadow p-4"
+      class="navbar-brand shadow p-4" 
       routerLink="dashboard"
       style="font-family: 'ZCOOL KuaiLe', cursive; font-size: 18px;"
       >mgmt.
@@ -31,6 +31,13 @@
         </ng-template>
       </ais-hits>
     </ais-instantsearch>
+    <div class="mx-auto">
+      <small class="font-italic mr-1">mgmt.</small>
+      <small class="mr-1">version 0.1.0 - Built with</small>
+      <img style="width: 1rem;" src="../../../../assets/angular-512.png">
+      <img style="width: 0.75rem;" src="../../../../assets/firebase.png">
+      <small class="ml-1">by Achu Mukundan</small>
+    </div>
 
     <div class="d-inline-flex ml-auto mr-2 my-2">
       <img

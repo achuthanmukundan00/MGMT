@@ -68,7 +68,7 @@ export class ProjectService {
 
   getMembers() {
     for(let i = 0; i < this.currentProject.members.length; i++) {
-      this.projectMembers.push(this.afs.doc<User>(`users/${this.currentProject.members[i]}`).valueChanges());
+      this.projectMembers[i] = this.afs.doc<User>(`users/${this.currentProject.members[i]}`).valueChanges();
     }
 
     for(let i = 0; i < this.projectMembers.length; i++) {

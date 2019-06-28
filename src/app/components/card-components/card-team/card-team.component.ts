@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/authentication/auth.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { User } from 'src/app/models/user';
-import { Observable } from 'rxjs';
 import {
   AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument
 } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-team',
@@ -15,14 +13,17 @@ import {
   styleUrls: ['./card-team.component.scss']
 })
 export class CardTeamComponent implements OnInit {
-  members: User[];
+  public members: User[];
 
-  constructor(public auth: AuthService, public projectService: ProjectService, public afs: AngularFirestore) {
+  constructor(public auth: AuthService, public projectService: ProjectService, public afs: AngularFirestore, private router: Router) {
+  }
+
+  ngOnInit() {
     this.projectService.getMembers();
     this.members = this.projectService.membersUserArray;
   }
 
-  ngOnInit() {
-    
+  onSelect(member) {
+    this.router.navigate(['/users', member.uid]);
   }
 }

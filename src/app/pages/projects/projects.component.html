@@ -28,7 +28,7 @@
   <div class="container-fluid pt-3 px-3">
     <div class="row">
       <div class="col- m-2" *ngFor="let project of projects">
-        <div class="card shadow border-0 p-4" style="width: 22rem; height: 16rem;">
+        <div class="card shadow border-0 p-4">
           <div class="row m-0 p-0">
             <h5>{{ project.name }}</h5>
             <img class="align-self-center ml-auto" src="../../../assets/group_18px.svg">
@@ -38,12 +38,16 @@
           </div>
           <div class="card-body p-0">
 
-            <p class="card-text text-secondary">{{ project.description }}</p>
+            <p class="card-text text-secondary mt-2">{{ project.description }}</p>
           </div>
-          <div class="row mt-auto p-0 mx-0 mt-auto mb-0">
+          <div class="row mt-5 p-0 mx-0 mb-0">
             <button type="button" class="btn btn-primary shadow-sm" (click)="setCurrentProject(project)"
               routerLink="/dashboard">
               Open Project
+            </button>
+            <button type="button" class="btn btn-info shadow-sm ml-2" (click)="setCurrentProject(project)"
+              routerLink="/team">
+              Manage Team
             </button>
             <button type="button" class="btn btn-secondary shadow-sm ml-2" data-toggle="modal"
               data-target="#editorModal" (click)="editProject($event, project)">
