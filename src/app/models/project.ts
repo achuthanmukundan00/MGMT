@@ -9,7 +9,6 @@ export interface Project {
 }
 
 export interface Deadline {
-    id?: string;
     name: string;
     date: string;
 }

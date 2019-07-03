@@ -1,0 +1,14 @@
+<form *ngIf="(auth.user | async) as user">
+  <div class="form-group">
+    <label for="projectName">Deadline Name</label>
+    <input type="name" class="form-control" [(ngModel)]="deadline.name" name="name" id="deadlineName"
+      placeholder="Name a project deadline.">
+  </div>
+  <div class="form-group">
+    <label class="mr-3" for="deadlineDate">Date:</label>
+    <input class="rounded" type="date" [(ngModel)]="deadline.date" id="deadlineDate" name="date"
+    placeholder="yyyy-MM-dd" required/>
+  </div>
+  <button type="submit" value="submit" class="btn btn-primary" (click)="onSubmit()" data-dismiss="modal">Save
+    changes</button>
+</form>

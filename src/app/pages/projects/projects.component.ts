@@ -25,8 +25,6 @@ export class ProjectsComponent implements OnInit {
     this.getRequiredProjects();   
   }
 
- 
-
   private getRequiredProjects() {
     this.projectService.getProjects(this.auth.uid);
     this.projectService.projectsCollection.snapshotChanges()

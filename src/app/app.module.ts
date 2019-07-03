@@ -23,6 +23,7 @@ import { NgAisModule } from 'angular-instantsearch';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './core/footer/footer.component';
 import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
+import { DeadlineCreatorComponent } from './deadline-creator/deadline-creator.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PublicProfileComponent } from './pages/public-profile/public-profile.co
     ProjectCreatorComponent,
     FooterComponent,
     PublicProfileComponent,
+    DeadlineCreatorComponent,
   ],
   providers: [AuthGuard, AuthService, ProjectService],
   imports: [

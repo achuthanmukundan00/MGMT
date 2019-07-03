@@ -6,40 +6,37 @@
   <div class="col mt-5">
     <h1 class="text-center">Selected a project to start.</h1>
     <p class="text-center">Go the the projects menu, and get to work on a project</p>
-    <div class="col col text-center">
+    <div class="col text-center">
       <button class="btn btn-primary shadow-sm" routerLink="/projects">Go to projects</button>
     </div>
   </div>
 </ng-template>
 
-
-
 <ng-template #projectSelected>
-  <div class="mt-4 mb-3 px-4 container-fluid">
+  <div class="container-fluid p-4">
     <h1>{{ currentProject.name }}'s Team</h1>
-
-    <div class="col mt-4">
-      <div class="row card shadow border-0 p-4 mb-4" *ngFor="let member of members; let i = index">
-
-
-        <div class="member media my-2" (click)="onSelect(member)">
-          <img [src]="member.photoURL" class="img-fluid align-self-center mr-3 rounded-circle"
-            style="width: 4rem; height: 4rem;" />
+    <div class="row rounded shadow mx-0 my-3 py-3" *ngFor="let member of members; let i = index;">
+      <div class="col-3 border-right">
+        <div class="media">
+          <img [src]="member.photoURL" class="align-self-center rounded-circle mr-3" style="width: 5rem; height: auto;">
           <div class="media-body align-self-center">
-            <h6 class="align-middle mb-0">{{ member.displayName }}</h6>
-            <small class="m-0" *ngIf="i == 0">Leader</small>
+            <h6 class="my-0">{{ member.displayName }}</h6>
+            <small class="my-0" *ngIf="i == 0">Leader</small>
           </div>
         </div>
-
-
-
-
-
-
-
-
       </div>
-
+      <div class="col-3 border-right pt-2">
+        <p class="text-center text-secondary m-0">Tasks Completed</p>
+        <h4 class="text-center font-weight-bold">#</h4>
+      </div>
+      <div class="col-3 border-right pt-2">
+        <p class="text-center text-secondary m-0">Tasks Pending</p>
+        <h4 class="text-center font-weight-bold">#</h4>
+      </div>
+      <div class="col-3 pt-2">
+        <p class="text-center text-secondary m-0">Tasks Overdue</p>
+        <h4 class="text-center font-weight-bold">#</h4>
+      </div>
     </div>
   </div>
 </ng-template>
