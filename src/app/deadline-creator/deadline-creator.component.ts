@@ -11,8 +11,9 @@ import { DeadlineService } from '../core/services/deadline.service';
 export class DeadlineCreatorComponent implements OnInit {
   deadline: Deadline = {
     name: '',
-    date: ''
-   };
+    date: '',
+    tasks: []
+  };
 
   constructor(private auth: AuthService, private deadlineService: DeadlineService) { }
 

@@ -28,11 +28,13 @@ export class TeamComponent implements OnInit {
     }
     else {
       this.currentProjectSelected = false;
-    }
-    
-    
-    
-    
+    }  
+  }
+
+  removeMember(i) {
+    this.members.splice(i, 1);
+    this.projectService.currentProject.members.splice(i, 1);
+    this.projectService.updateProject(this.projectService.currentProject);
   }
 
 }

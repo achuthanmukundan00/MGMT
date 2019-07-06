@@ -18,7 +18,10 @@ export class CardDeadlinesComponent implements OnInit {
     this.deadlines = this.deadlineService.deadlines;
   }
 
-
+  deleteDeadline(i) {
+    this.deadlines.splice(i, 1);
+    this.deadlineService.updateDeadlines(this.deadlines);
+  }
 
 
   

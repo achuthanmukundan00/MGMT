@@ -55,10 +55,10 @@ export class ProjectService {
     this.currentProject = project;
   }
 
-  updateTasks(project: Project, tasks: string[]) {
-    project.tasks = tasks;
-    this.updateProject(project);
-  }
+  // updateTasks(project: Project, tasks: string[]) {
+  //   project.tasks = tasks;
+  //   this.updateProject(project);
+  // }
 
   getProjects(uid: string) {
     this.projectsCollection = this.afs.collection('projects', ref =>

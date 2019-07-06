@@ -37,5 +37,10 @@ export class DeadlineService {
     this.projectService.updateProject(this.currentProject);
   }
 
+  updateDeadlines(deadlines: Deadline[]) {
+    this.projectService.currentProject.deadlines = deadlines;
+    this.projectService.updateProject(this.currentProject);
+  }
+
 
 }

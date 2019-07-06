@@ -13,7 +13,6 @@ export class ProjectCreatorComponent implements OnInit {
   project: Project = {
    name: '',
    description: '',
-   tasks: []
   };
 
   constructor(private projectService: ProjectService, public auth: AuthService) { }

@@ -4,7 +4,7 @@
 >
   <div class="card-body">
     <h5 class="card-title mb-4">Team</h5>
-    <div class="member media py-4" *ngFor="let member of members; let i = index" (click)="onSelect(member)">
+    <div class="member media py-2" *ngFor="let member of members; let i = index" (click)="onSelect(member)">
       <hr *ngIf="i >= 0 && i <= (members.length - 1)" style="border-width: 1px;">
       <img
         [src]="member.photoURL"
