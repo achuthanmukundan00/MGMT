@@ -23,7 +23,8 @@ import { NgAisModule } from 'angular-instantsearch';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './core/footer/footer.component';
 import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
-import { DeadlineCreatorComponent } from './deadline-creator/deadline-creator.component';
+import { DeadlineCreatorComponent } from './components/deadline-creator/deadline-creator.component';
+import { TaskCreatorComponent } from './components/task-creator/task-creator.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DeadlineCreatorComponent } from './deadline-creator/deadline-creator.co
     FooterComponent,
     PublicProfileComponent,
     DeadlineCreatorComponent,
+    TaskCreatorComponent,
   ],
   providers: [AuthGuard, AuthService, ProjectService],
   imports: [

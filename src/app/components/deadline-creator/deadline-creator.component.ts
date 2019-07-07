@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../core/authentication/auth.service';
-import { Deadline } from '../models/project';
-import { DeadlineService } from '../core/services/deadline.service';
+import { AuthService } from '../../core/authentication/auth.service';
+import { Deadline } from '../../models/project';
+import { DeadlineService } from '../../core/services/deadline.service';
 
 @Component({
   selector: 'app-deadline-creator',

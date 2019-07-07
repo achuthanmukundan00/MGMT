@@ -16,5 +16,5 @@ export interface Deadline {
 export interface Task {
     name: string;
     completed?: boolean;
-    usersAssigned?: string[]; 
+    userAssigned: string; 
 }

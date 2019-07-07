@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Deadline } from 'src/app/models/project';
+import { Deadline, Project } from 'src/app/models/project';
 import { DeadlineService } from 'src/app/core/services/deadline.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { DeadlineService } from 'src/app/core/services/deadline.service';
 })
 export class CardDeadlinesComponent implements OnInit {
   deadlines: Deadline[];
+  currentProject: Project;
 
   constructor(private deadlineService: DeadlineService) { 
   }
@@ -16,6 +17,7 @@ export class CardDeadlinesComponent implements OnInit {
   ngOnInit() {
     this.deadlineService.getDeadlines();
     this.deadlines = this.deadlineService.deadlines;
+    this.currentProject = this.deadlineService.currentProject;
   }
 
   deleteDeadline(i) {

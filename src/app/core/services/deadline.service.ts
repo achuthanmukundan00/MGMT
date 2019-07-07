@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Project, Deadline } from '../../models/project';
+import { Project, Deadline, Task } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -42,5 +42,14 @@ export class DeadlineService {
     this.projectService.updateProject(this.currentProject);
   }
 
+  completeTask(task: Task) {
+    for(let i = 0; i < this.deadlines.length; i++) {
+      if(this.deadlines[i].tasks.indexOf(task) !== -1) {
+        this.deadlines[i].tasks[this.deadlines[i].tasks.indexOf(task)].completed = true;
+      } 
+    }
+    this.currentProject.deadlines = this.deadlines;
+    this.projectService.updateProject(this.currentProject);
+  }
 
 }

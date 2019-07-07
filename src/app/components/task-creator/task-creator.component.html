@@ -1,0 +1,20 @@
+<form *ngIf="(auth.user | async) as user">
+  <div class="form-group">
+    <label for="taskName">Task Name</label>
+    <input type="name" class="form-control" [(ngModel)]="task.name" name="name" id="taskName" placeholder="Name a task">
+  </div>
+  <div class="form-group">
+    <label for="memberSelect">Assign a member to this task</label>
+    <select class="form-control" id="memberSelect" [(ngModel)]="task.userAssigned" name="userAssigned">
+      <option *ngFor="let member of members" >{{ member.displayName }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="deadlineSelect">Which deadline is this task for?</label>
+    <select class="form-control" id="deadlineSelect" [(ngModel)]="selectedDeadline" name="selectedDeadline">
+      <option *ngFor="let deadline of deadlines;" [ngValue]="deadline">{{ deadline.name }}</option>
+    </select>
+  </div>
+  <button type="submit" value="submit" class="btn btn-primary" (click)="onSubmit()" data-dismiss="modal">Save
+    changes</button>
+</form>

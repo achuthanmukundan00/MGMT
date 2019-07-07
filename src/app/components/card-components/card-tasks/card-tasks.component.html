@@ -1,33 +1,50 @@
-<!-- <div class="card rounded-0 shadow border-0 mt-4">
+<div class="card rounded-0 shadow border-0 mt-4">
   <div class="card-body">
-    <div class="container-fluid row m-0 p-0">
-      <h5 class="card-title mr-auto">Tasks ({{ taskCount }})</h5>
-    </div>
-  </div>
-  <ul class="overflow-auto list-group list-group-flush mx-4">
-    <form class="form-check my-1" *ngFor="let task of tasks; let i = index">
-      <div class="d-flex">
-        <input class="form-check-input" type="checkbox" id="taskCheck" />
-        <label class="form-check-label ml-2" for="taskCheck">{{ task }}</label>
-        <img
-          class="ml-auto"
-          src="../../../../assets/delete_24px.svg"
-          style="width: 1rem; height: 1rem; cursor: pointer;"
-          (click)="deleteTask(i)"
-        />
+
+    <div class="container-fluid mb-4">
+      
+      <h5 class="card-title font-weight-bold">Tasks</h5>
+      <ul class="overflow-auto list-group list-group-flush ml-3 mr-5 mb-3">
+        <form class="form-check my-1" *ngFor="let task of pendingTasks; let i = index">
+          <div class="d-flex">
+            <input class="form-check-input" type="checkbox" id="taskCheck" (click)="completeTask(i)" />
+            <label class="form-check-label ml-2" for="taskCheck">{{ task.name }} ({{ task.userAssigned }})</label>
+            <img class="ml-auto" src="../../../../assets/delete_24px.svg"
+              style="width: 1rem; height: 1rem; cursor: pointer;" (click)="deleteTask(i, task)" />
+          </div>
+        </form>
+      </ul>
+
+      <ul class="overflow-auto list-group list-group-flush mr-5" *ngIf="completedTasks.length">
+        <h5 class="card-title font-weight-bold">Completed</h5>
+        <div class=" my-1" *ngFor="let task of completedTasks; let i = index">
+          <div class="d-flex">
+            <small class="font-italic ml-2">{{ task.name }} ({{ task.userAssigned }})</small>
+            <img class="ml-auto" src="../../../../assets/delete_24px.svg"
+              style="width: 1rem; height: 1rem; cursor: pointer;" (click)="deleteTask(i, task)" />
+          </div>
+        </div>
+      </ul>
+
+      <!--Task Creator Modal-->
+      <div class="modal" id="taskModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content border-0 shadow-sm">
+            <div class="modal-header shadow-sm">
+              <h5 class="modal-title">Create a new task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-task-creator></app-task-creator>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </ul>
-  <div class="card-body">
-    <form>
-      <input
-        type="text"
-        class="form-control shadow-sm border-0 p-2"
-        name="task"
-        placeholder="Enter a new task here..."
-        [(ngModel)]="taskText"
-        (keydown.enter)="addTask()"
-      />
-    </form>
+
+    </div>
+    <button class="btn btn-light shadow-sm mx-auto text-info font-weight-bold" data-toggle="modal"
+      data-target="#taskModal">+</button>
   </div>
-</div> -->
+</div>

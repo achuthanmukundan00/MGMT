@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Project } from '../../models/project';
+import { Project, Task } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -25,6 +25,8 @@ export class ProjectService {
 
   projectMembers: Observable<User>[] = [];
   membersUserArray: User[] = [];
+
+  tasks: Task[] = [];
 
 
   constructor(private afs: AngularFirestore, private auth: AuthService) {
@@ -55,11 +57,6 @@ export class ProjectService {
     this.currentProject = project;
   }
 
-  // updateTasks(project: Project, tasks: string[]) {
-  //   project.tasks = tasks;
-  //   this.updateProject(project);
-  // }
-
   getProjects(uid: string) {
     this.projectsCollection = this.afs.collection('projects', ref =>
       ref.where('members', 'array-contains', uid).orderBy('name', 'asc')
@@ -67,15 +64,28 @@ export class ProjectService {
   }
 
   getMembers() {
-    for(let i = 0; i < this.currentProject.members.length; i++) {
+    for (let i = 0; i < this.currentProject.members.length; i++) {
       this.projectMembers[i] = this.afs.doc<User>(`users/${this.currentProject.members[i]}`).valueChanges();
     }
 
-    for(let i = 0; i < this.projectMembers.length; i++) {
-      this.projectMembers[i].subscribe( member => {
+    for (let i = 0; i < this.projectMembers.length; i++) {
+      this.projectMembers[i].subscribe(member => {
         this.membersUserArray[i] = member;
       });
     }
   }
+
+  getTasks() {
+    if (this.currentProject.deadlines.length) {
+      for (let i = 0; i < this.currentProject.deadlines.length; i++) {
+        this.tasks.push(...this.currentProject.deadlines[i].tasks);
+      }
+    }
+  }
+
+  // updateTasks(project: Project, tasks: string[]) {
+  //    project.tasks = tasks;
+  //    this.updateProject(project);
+  // }
 
 }
