@@ -26,7 +26,7 @@ export class TaskCreatorComponent implements OnInit {
   };
 
 
-  constructor(private auth: AuthService, private projectService: ProjectService) { }
+  constructor(public auth: AuthService, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.projectService.getMembers();

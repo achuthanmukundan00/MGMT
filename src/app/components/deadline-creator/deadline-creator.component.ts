@@ -17,7 +17,7 @@ export class DeadlineCreatorComponent implements OnInit {
 
   @Output() outputToParent = new EventEmitter<boolean>();
 
-  constructor(private auth: AuthService, private deadlineService: DeadlineService) { }
+  constructor(public auth: AuthService, private deadlineService: DeadlineService) { }
 
   ngOnInit() {
   }
