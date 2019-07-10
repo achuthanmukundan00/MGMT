@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/core/services/project.service';
-import { Task } from 'src/app/models/project';
+import { Task, Project } from 'src/app/models/project';
 import { DeadlineService } from 'src/app/core/services/deadline.service';
 
 @Component({
@@ -12,14 +12,30 @@ export class CardTasksComponent implements OnInit {
   tasks: Task[] = [];
   completedTasks: Task[] = [];
   pendingTasks: Task[] = [];
+  currentProject: Project;
 
   constructor(private projectService: ProjectService, private deadlineService: DeadlineService) { }
 
   ngOnInit() {
+    console.log(`tasks initialized`);
+    this.getRequiredTasks();
+  }
+  ngOnChanges() {
+    console.log(`tasks updated`);
     this.getRequiredTasks();
   }
 
+  getOutputValue(triggered: boolean) {
+    if(triggered) {
+      this.getRequiredTasks();
+    }
+  }
+
   private getRequiredTasks() {
+    this.tasks = [];
+    this.pendingTasks = [];
+    this.completedTasks = [];
+
     this.projectService.getTasks();
     this.tasks = this.projectService.tasks;
 
@@ -34,10 +50,7 @@ export class CardTasksComponent implements OnInit {
   }
 
   completeTask(i) {
-    this.deadlineService.completeTask(this.tasks[i]);
-    this.tasks = [];
-    this.pendingTasks = [];
-    this.completedTasks = [];
+    this.deadlineService.completeTask(this.pendingTasks[i]); //good
     this.getRequiredTasks();
   }
 
@@ -66,9 +79,6 @@ export class CardTasksComponent implements OnInit {
 
     this.projectService.updateProject(this.projectService.currentProject);
 
-    this.tasks = [];
-    this.pendingTasks = [];
-    this.completedTasks = [];
     this.getRequiredTasks();
   }
 

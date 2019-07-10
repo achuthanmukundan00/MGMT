@@ -35,6 +35,7 @@ export class ProjectService {
   addProject(project: Project) {
     project.userID = this.auth.uid;
     project.members = [this.auth.uid];
+    project.deadlines = [];
     this.projectsCollection.add(project);
   }
 
@@ -76,16 +77,11 @@ export class ProjectService {
   }
 
   getTasks() {
+    this.tasks = [];
     if (this.currentProject.deadlines.length) {
       for (let i = 0; i < this.currentProject.deadlines.length; i++) {
         this.tasks.push(...this.currentProject.deadlines[i].tasks);
       }
     }
   }
-
-  // updateTasks(project: Project, tasks: string[]) {
-  //    project.tasks = tasks;
-  //    this.updateProject(project);
-  // }
-
 }

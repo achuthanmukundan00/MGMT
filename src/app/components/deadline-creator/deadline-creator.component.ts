@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../core/authentication/auth.service';
 import { Deadline } from '../../models/project';
 import { DeadlineService } from '../../core/services/deadline.service';
@@ -15,19 +15,26 @@ export class DeadlineCreatorComponent implements OnInit {
     tasks: []
   };
 
+  @Output() outputToParent = new EventEmitter<boolean>();
+
   constructor(private auth: AuthService, private deadlineService: DeadlineService) { }
 
   ngOnInit() {
   }
 
-
   onSubmit() {
     this.deadlineService.getDeadlines;
-    if (this.deadline.name !== '' && this.deadline.date !== null) {
+    if (this.deadline.name !== '' && this.deadline.date !== '') {
+      console.log(this.deadline);
       this.deadlineService.addDeadline(this.deadline);
-      this.deadline.name = '';
-      this.deadline.date = '';
     }
-  }
 
+    this.outputToParent.emit(true);
+
+    this.deadline = {
+      name: '',
+      date: '',
+      tasks: []
+    };
+  }
 }

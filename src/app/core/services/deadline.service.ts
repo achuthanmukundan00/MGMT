@@ -16,7 +16,7 @@ import { ProjectService } from './project.service';
 })
 export class DeadlineService {
   currentProject: Project;
-  deadlines: Deadline[];
+  deadlines: Deadline[] = [];
 
   constructor(private projectService: ProjectService) {
   }
@@ -27,7 +27,7 @@ export class DeadlineService {
   }
 
   addDeadline(deadline: Deadline) {
-    if(this.deadlines == null) {
+    if (this.deadlines == []) {
       this.deadlines = [deadline];
     }
     else {
@@ -35,6 +35,7 @@ export class DeadlineService {
     }
     this.currentProject.deadlines = this.deadlines;
     this.projectService.updateProject(this.currentProject);
+
   }
 
   updateDeadlines(deadlines: Deadline[]) {
@@ -43,10 +44,11 @@ export class DeadlineService {
   }
 
   completeTask(task: Task) {
-    for(let i = 0; i < this.deadlines.length; i++) {
-      if(this.deadlines[i].tasks.indexOf(task) !== -1) {
+    for (let i = 0; i < this.deadlines.length; i++) {
+      if (this.deadlines[i].tasks.indexOf(task) !== -1) {
         this.deadlines[i].tasks[this.deadlines[i].tasks.indexOf(task)].completed = true;
-      } 
+        console.log(`task completed`);
+      }
     }
     this.currentProject.deadlines = this.deadlines;
     this.projectService.updateProject(this.currentProject);

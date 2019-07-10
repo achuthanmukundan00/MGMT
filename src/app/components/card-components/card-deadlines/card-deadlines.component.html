@@ -23,7 +23,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <app-deadline-creator></app-deadline-creator>
+              <app-deadline-creator (outputToParent)="getOutputValue($event)"></app-deadline-creator>
             </div>
           </div>
         </div>

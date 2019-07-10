@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/core/services/project.service';
-import { Task, Deadline } from 'src/app/models/project';
+import { Task, Deadline, Project } from 'src/app/models/project';
 import { CardTasksComponent } from '../card-components/card-tasks/card-tasks.component';
 
 @Component({
@@ -11,6 +11,10 @@ import { CardTasksComponent } from '../card-components/card-tasks/card-tasks.com
   styleUrls: ['./task-creator.component.scss']
 })
 export class TaskCreatorComponent implements OnInit {
+
+  @Output() outputToParent = new EventEmitter<boolean>();
+
+
   members: User[];
   deadlines: Deadline[];
   selectedDeadline: Deadline;
@@ -30,16 +34,20 @@ export class TaskCreatorComponent implements OnInit {
     this.deadlines = this.projectService.currentProject.deadlines;
   }
 
-  
-
   onSubmit() {
-    if(this.projectService.currentProject.deadlines[this.deadlines.indexOf(this.selectedDeadline)].tasks == null) {
+    if (this.projectService.currentProject.deadlines[this.deadlines.indexOf(this.selectedDeadline)].tasks == []) {
       this.projectService.currentProject.deadlines[this.deadlines.indexOf(this.selectedDeadline)].tasks = [this.task];
     }
     else {
       this.projectService.currentProject.deadlines[this.deadlines.indexOf(this.selectedDeadline)].tasks.push(this.task);
     }
-    console.log(this.projectService.currentProject.deadlines[this.deadlines.indexOf(this.selectedDeadline)].tasks);
     this.projectService.updateProject(this.projectService.currentProject);
+    this.outputToParent.emit(true);
+
+    this.task = {
+      name: '',
+      completed: false,
+      userAssigned: ''
+    }
   }
 }

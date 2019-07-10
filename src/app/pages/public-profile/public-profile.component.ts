@@ -26,7 +26,7 @@ export class PublicProfileComponent implements OnInit {
     // subscribe to the parameters observable
     this.route.paramMap.subscribe(params => {
       this.uid = params.get('uid');
-      console.log(this.uid);
+      console.log(`uid: ` + this.uid);
       this.selectedUser$ = this.afs.doc<User>(`users/${this.uid}`).valueChanges();
       this.getRequiredProjects(); 
     }); 

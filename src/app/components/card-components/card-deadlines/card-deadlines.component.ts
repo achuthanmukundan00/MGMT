@@ -15,9 +15,21 @@ export class CardDeadlinesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRequiredDeadlines();
+  }
+
+  getOutputValue(triggered: boolean) {
+    console.log(triggered);
+    if(triggered) {
+      this.getRequiredDeadlines();
+    }
+  }
+
+  private getRequiredDeadlines() {
     this.deadlineService.getDeadlines();
     this.deadlines = this.deadlineService.deadlines;
     this.currentProject = this.deadlineService.currentProject;
+    console.log(this.deadlines);
   }
 
   deleteDeadline(i) {
