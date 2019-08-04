@@ -54,4 +54,15 @@ export class DeadlineService {
     this.projectService.updateProject(this.currentProject);
   }
 
+  uncompleteTask(task: Task) {
+    for (let i = 0; i < this.deadlines.length; i++) {
+      if (this.deadlines[i].tasks.indexOf(task) !== -1) {
+        this.deadlines[i].tasks[this.deadlines[i].tasks.indexOf(task)].completed = false;
+        console.log(`task uncompleted`);
+      }
+    }
+    this.currentProject.deadlines = this.deadlines;
+    this.projectService.updateProject(this.currentProject);
+  }
+
 }

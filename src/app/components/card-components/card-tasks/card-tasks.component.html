@@ -3,6 +3,7 @@
 
     <div class="container-fluid mb-4 p-0">
       <h5 class="card-title font-weight-bold">Tasks</h5>
+      
       <ul class="overflow-auto list-group list-group-flush ml-3 mr-5 mb-3" *ngIf="pendingTasks.length">
           <h6 class="card-title font-weight-bold">Pending</h6>
         <form class="form-check my-1" *ngFor="let task of pendingTasks; let i = index">
@@ -17,14 +18,16 @@
 
       <ul class="overflow-auto list-group list-group-flush ml-3 mr-5 mb-3" *ngIf="completedTasks.length">
         <h6 class="card-title font-weight-bold">Completed</h6>
-        <div class=" my-1" *ngFor="let task of completedTasks; let i = index">
-          <div class="d-flex">
-            <small class="font-italic ml-2">{{ task.name }} ({{ task.userAssigned }})</small>
-            <img class="ml-3" src="../../../../assets/delete_24px.svg"
-              style="width: 1rem; height: 1rem; cursor: pointer;" (click)="deleteTask(i, task)" />
-          </div>
+      <form class="form-check my-1" *ngFor="let task of completedTasks; let i = index">
+        <div class="d-flex">
+          <input class="form-check-input" type="checkbox" id="taskCheck" (click)="uncompleteTask(i)" />
+          <label class="form-check-label text-secondary font-italic ml-2" for="taskCheck">{{ task.name }} ({{ task.userAssigned }})</label>
+          <img class="ml-auto" src="../../../../assets/delete_24px.svg"
+            style="width: 1rem; height: 1rem; cursor: pointer;" (click)="deleteTask(i, task)" />
         </div>
-      </ul>
+      </form>
+    </ul>
+    
 
       <!--Task Creator Modal-->
       <div class="modal" id="taskModal" tabindex="-1" role="dialog">

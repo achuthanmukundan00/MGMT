@@ -1,3 +1,6 @@
+import { User } from './user';
+
+
 export interface Project {
     id?: string;
     userID?: string;
@@ -18,3 +21,14 @@ export interface Task {
     completed?: boolean;
     userAssigned: string; 
 }
+
+export interface MemberProgress {
+    member: User;
+    completedTasks: Task[];
+    pendingTasks: Task[];
+}
+
+
+
+
+

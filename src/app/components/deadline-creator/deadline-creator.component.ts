@@ -25,7 +25,6 @@ export class DeadlineCreatorComponent implements OnInit {
   onSubmit() {
     this.deadlineService.getDeadlines;
     if (this.deadline.name !== '' && this.deadline.date !== '') {
-      console.log(this.deadline);
       this.deadlineService.addDeadline(this.deadline);
     }
 

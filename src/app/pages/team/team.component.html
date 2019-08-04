@@ -15,30 +15,30 @@
 <ng-template #projectSelected>
   <div class="container-fluid p-4">
     <h1 class="mb-4">{{ currentProject.name }}'s Team</h1>
-    <div class="row rounded shadow mx-0 mb-3 py-3 pl-3 pr-4" *ngFor="let member of members; let i = index;">
+    <div class="row rounded shadow mx-0 mb-3 py-3 pl-3 pr-4" *ngFor="let memberProgress of membersProgress; let i = index;">
       <div class="col border-right p-0">
-        <div class="media">
-          <img [src]="member.photoURL" class="align-self-center rounded-circle mr-3" style="width: 5rem; height: auto;">
+        <div class="media pr-5">
+          <img [src]="memberProgress.member.photoURL" class="align-self-center rounded-circle mr-3" style="width: 5rem; height: auto;">
           <div class="media-body align-self-center">
-            <h6 class="my-0">{{ member.displayName }}</h6>
+            <h6 class="my-0">{{ memberProgress.member.displayName }}</h6>
             <small class="my-0" *ngIf="i == 0">Leader</small>
           </div>
+          <img class="ml-auto align-self-center" *ngIf="i !== 0" (click)="removeMember(i)" data-toggle="tooltip" data-placement="top" title="Remove this member"
+        src="../../../assets/baseline-remove_circle_outline-24px.svg">
         </div>
+       
       </div>
       <div class="col border-right pt-2">
         <p class="text-center text-secondary m-0">Tasks Completed</p>
-        <h4 class="text-center font-weight-bold">#</h4>
+        <h4 class="text-center font-weight-bold">
+          {{ memberProgress.completedTasks.length }}
+        </h4>
       </div>
       <div class="col border-right pt-2">
         <p class="text-center text-secondary m-0">Tasks Pending</p>
-        <h4 class="text-center font-weight-bold">#</h4>
+        <h4 class="text-center font-weight-bold">{{ memberProgress.pendingTasks.length }}</h4>
       </div>
-      <div class="col pt-2">
-        <p class="text-center text-secondary m-0">Tasks Overdue</p>
-        <h4 class="text-center font-weight-bold">#</h4>
-      </div>
-      <img class="ml-auto align-self-center" *ngIf="i !== 0" (click)="removeMember(i)" data-toggle="tooltip" data-placement="top" title="Remove this member"
-        src="../../../assets/baseline-remove_circle_outline-24px.svg">
+      
     </div>
   </div>
 </ng-template>

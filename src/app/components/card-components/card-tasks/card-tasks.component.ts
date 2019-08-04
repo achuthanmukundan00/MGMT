@@ -50,7 +50,11 @@ export class CardTasksComponent implements OnInit {
   }
 
   completeTask(i) {
-    this.deadlineService.completeTask(this.pendingTasks[i]); //good
+    this.deadlineService.completeTask(this.pendingTasks[i]);
+    this.getRequiredTasks();
+  }
+  uncompleteTask(i) {
+    this.deadlineService.uncompleteTask(this.completedTasks[i]);
     this.getRequiredTasks();
   }
 

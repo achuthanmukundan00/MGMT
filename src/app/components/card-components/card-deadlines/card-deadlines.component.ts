@@ -29,7 +29,6 @@ export class CardDeadlinesComponent implements OnInit {
     this.deadlineService.getDeadlines();
     this.deadlines = this.deadlineService.deadlines;
     this.currentProject = this.deadlineService.currentProject;
-    console.log(this.deadlines);
   }
 
   deleteDeadline(i) {
