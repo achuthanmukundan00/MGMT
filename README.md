@@ -7,4 +7,4 @@ Built with Angular 7, Bootstrap 4, and Firebase. Search features created using A
 
 Can be found at:
 https://mgmt-15d2d.firebaseapp.com/
-(version 0.2.0)
+(version 0.3.0)
