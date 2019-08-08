@@ -12,16 +12,9 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class TeamComponent implements OnInit {
   members: User[];
-  currentProject: Project = this.projectService.currentProject;
-  currentProjectSelected: Boolean;
-  membersProgress: MemberProgress[] = [];
-  tasks: Task[];
-
-  memberProgress: MemberProgress = {
-    member: null,
-    completedTasks: [],
-    pendingTasks: []
-  };
+  currentProject: Project;
+  currentProjectSelected?: Boolean;
+  memberProgressArray: MemberProgress[] = [];
 
   constructor(
     public auth: AuthService,
@@ -30,13 +23,15 @@ export class TeamComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.currentProject = this.projectService.getCurrentProject();
+    console.log(this.currentProject);
     if (this.currentProject) {
       this.currentProjectSelected = true;
       this.projectService.getMembers();
       this.members = this.projectService.membersUserArray;
-      this.projectService.getTasks();
-      this.tasks = this.projectService.tasks;
-      this.getMemberProgress();
+      this.projectService.getMemberProgress();
+      this.memberProgressArray = this.projectService.memberProgressArray;
+      console.log(this.memberProgressArray);
     } else {
       this.currentProjectSelected = false;
     }
@@ -48,25 +43,6 @@ export class TeamComponent implements OnInit {
     this.projectService.updateProject(this.projectService.currentProject);
   }
 
-  getMemberProgress() {
-    completed: false;
-
-    for(let i = 0; i < this.members.length; i++) {
-      this.memberProgress.member = this.members[i];
-      console.log(this.memberProgress.member);
-
-      for(let j = 0; j < this.tasks.length; j++) {
-        if(this.tasks[i].userAssigned == this.memberProgress.member.displayName) {
-          if(this.tasks[i].completed == true) {
-            this.memberProgress.completedTasks.push(this.tasks[i]);
-          }else if(this.tasks[i].completed == false) {
-            this.memberProgress.completedTasks.push(this.tasks[i]);
-          }
-        }
-      }
-    }
-
-  }
 }
 
 /**

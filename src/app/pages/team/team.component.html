@@ -15,7 +15,7 @@
 <ng-template #projectSelected>
   <div class="container-fluid p-4">
     <h1 class="mb-4">{{ currentProject.name }}'s Team</h1>
-    <div class="row rounded shadow mx-0 mb-3 py-3 pl-3 pr-4" *ngFor="let memberProgress of membersProgress; let i = index;">
+    <div class="row rounded shadow mx-0 mb-3 py-3 pl-3 pr-4" *ngFor="let memberProgress of memberProgressArray; let i = index;">
       <div class="col border-right p-0">
         <div class="media pr-5">
           <img [src]="memberProgress.member.photoURL" class="align-self-center rounded-circle mr-3" style="width: 5rem; height: auto;">

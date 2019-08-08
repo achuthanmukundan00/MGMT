@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Project, Task } from '../../models/project';
+import { Project, Task, MemberProgress } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -25,6 +25,8 @@ export class ProjectService {
 
   projectMembers: Observable<User>[] = [];
   membersUserArray: User[] = [];
+
+  memberProgressArray: MemberProgress[] = [];
 
   tasks: Task[] = [];
 
@@ -84,4 +86,40 @@ export class ProjectService {
       }
     }
   }
+
+  getMemberProgress() {
+    this.getMembers();
+    this.getTasks();
+    console.log(this.membersUserArray);
+
+    for(let i = 0; i < this.membersUserArray.length; i++) {
+      
+      let memberProgress = {
+        member: null,
+        completedTasks: [],
+        pendingTasks: [],
+        contribution: 0
+      };
+
+      memberProgress.member = this.membersUserArray[i];
+
+      for(let j = 0; j < this.tasks.length; j++) {
+        if(this.tasks[j].userAssigned === memberProgress.member.displayName) {
+          if(this.tasks[j].completed === true) {
+            memberProgress.completedTasks.push(this.tasks[j]);
+          }else if(this.tasks[j].completed === false) {
+            memberProgress.pendingTasks.push(this.tasks[j]);
+          }
+        }
+      }
+      memberProgress.contribution = (memberProgress.completedTasks.length / this.tasks.length) * 100;
+      this.memberProgressArray.push(memberProgress);
+    }
+    
+    console.log(this.memberProgressArray)
+  }
+
+
+
+
 }

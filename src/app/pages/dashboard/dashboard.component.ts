@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
     this.currentProject = this.projectService.currentProject;
   }
 
+  
+
 
 
 
