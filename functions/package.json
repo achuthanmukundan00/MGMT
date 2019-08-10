@@ -9,16 +9,14 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "main": "lib/index.js",
-  "dependencies": {
-    "@types/algoliasearch": "^3.30.5",
-    "algoliasearch": "^3.32.0",
-    "angular-instantsearch": "^2.2.1",
-    "firebase-admin": "~7.0.0",
-    "firebase-functions": "^2.2.0"
-  },
   "engines": {
     "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^8.0.0",
+    "firebase-functions": "^3.1.0",
+    "algoliasearch": "3.33.0"
   },
   "devDependencies": {
     "tslint": "^5.12.0",
