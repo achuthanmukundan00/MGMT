@@ -24,11 +24,11 @@ export class TeamComponent implements OnInit {
 
   ngOnInit() {
     this.currentProject = this.projectService.getCurrentProject();
-    console.log(this.currentProject);
     if (this.currentProject) {
       this.currentProjectSelected = true;
       this.projectService.getMembers();
       this.members = this.projectService.membersUserArray;
+      this.projectService.memberProgressArray = [];
       this.projectService.getMemberProgress();
       this.memberProgressArray = this.projectService.memberProgressArray;
       console.log(this.memberProgressArray);

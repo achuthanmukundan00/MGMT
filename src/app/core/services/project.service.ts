@@ -90,7 +90,6 @@ export class ProjectService {
   getMemberProgress() {
     this.getMembers();
     this.getTasks();
-    console.log(this.membersUserArray);
 
     for(let i = 0; i < this.membersUserArray.length; i++) {
       
