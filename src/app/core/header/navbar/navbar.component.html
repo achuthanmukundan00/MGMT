@@ -17,8 +17,8 @@
     <ais-instantsearch [config]="searchConfig">
       <ais-search-box (change)="searchChanged($event)"></ais-search-box>
       <ais-hits *ngIf="showResults">
-        <ng-template let-hits="hits">
-          <span class="results position-absolute shadow">
+        <ng-template let-hits="hits" let-results="results">
+          <span class="results position-absolute shadow" *ngIf="results.query && results.query.length > 0">
             <ul class="list-group">
               <li class="list-group-item p-0" *ngFor="let hit of hits" (click)="onSelect(hit)">
                 <div class="media px-2 py-3">

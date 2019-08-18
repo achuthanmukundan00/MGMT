@@ -23,10 +23,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   searchChanged(query) {
-    if (query.length !== 0) {
-      this.showResults = true;
-    } else {
+    if (query.length === 0) {
       this.showResults = false;
+    } else {
+      this.showResults = true;
     }
   }
 
