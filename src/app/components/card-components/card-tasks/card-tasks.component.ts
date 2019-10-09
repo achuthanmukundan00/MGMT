@@ -20,13 +20,9 @@ export class CardTasksComponent implements OnInit {
     console.log(`tasks initialized`);
     this.getRequiredTasks();
   }
-  ngOnChanges() {
-    console.log(`tasks updated`);
-    this.getRequiredTasks();
-  }
 
   getOutputValue(triggered: boolean) {
-    if(triggered) {
+    if (triggered) {
       this.getRequiredTasks();
     }
   }
@@ -40,10 +36,9 @@ export class CardTasksComponent implements OnInit {
     this.tasks = this.projectService.tasks;
 
     for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i].completed == true) {
+      if (this.tasks[i].completed === true) {
         this.completedTasks.push(this.tasks[i]);
-      }
-      else {
+      } else {
         this.pendingTasks.push(this.tasks[i]);
       }
     }

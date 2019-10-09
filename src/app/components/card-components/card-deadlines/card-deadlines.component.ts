@@ -11,16 +11,17 @@ export class CardDeadlinesComponent implements OnInit {
   deadlines: Deadline[];
   currentProject: Project;
 
-  constructor(private deadlineService: DeadlineService) { 
+  constructor(private deadlineService: DeadlineService) {
   }
 
   ngOnInit() {
+
     this.getRequiredDeadlines();
   }
 
   getOutputValue(triggered: boolean) {
     console.log(triggered);
-    if(triggered) {
+    if (triggered) {
       this.getRequiredDeadlines();
     }
   }
@@ -37,5 +38,5 @@ export class CardDeadlinesComponent implements OnInit {
   }
 
 
-  
+
 }

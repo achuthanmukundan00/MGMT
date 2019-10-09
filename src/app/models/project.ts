@@ -19,7 +19,7 @@ export interface Deadline {
 export interface Task {
     name: string;
     completed?: boolean;
-    userAssigned: string; 
+    userAssigned: string;
 }
 
 export interface MemberProgress {

@@ -7,7 +7,7 @@ import {
 import { map } from 'rxjs/operators';
 import { Project, Task, MemberProgress } from '../../models/project';
 import { AuthService } from '../authentication/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { User } from 'src/app/models/user';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class ProjectService {
   addProject(project: Project) {
     project.userID = this.auth.uid;
     project.members = [this.auth.uid];
-    project.deadlines = [];
+    project.deadlines.length = 0;
     this.projectsCollection.add(project);
   }
 
@@ -58,6 +58,7 @@ export class ProjectService {
 
   setCurrentProject(project: Project) {
     this.currentProject = project;
+    this.getMembers();
   }
 
   getProjects(uid: string) {
@@ -67,19 +68,27 @@ export class ProjectService {
   }
 
   getMembers() {
+    this.projectMembers.length = 0;
+    this.membersUserArray.length = 0;
+
     for (let i = 0; i < this.currentProject.members.length; i++) {
       this.projectMembers[i] = this.afs.doc<User>(`users/${this.currentProject.members[i]}`).valueChanges();
     }
 
+    const memberUserPromises = [];
     for (let i = 0; i < this.projectMembers.length; i++) {
-      this.projectMembers[i].subscribe(member => {
-        this.membersUserArray[i] = member;
-      });
+      memberUserPromises.push(new Promise((resolve, reject) => {
+        this.projectMembers[i].subscribe(member => {
+          this.membersUserArray[i] = member;
+          resolve();
+        });
+      }));
     }
+    return Promise.all(memberUserPromises);
   }
 
   getTasks() {
-    this.tasks = [];
+    this.tasks.length = 0;
     if (this.currentProject.deadlines.length) {
       for (let i = 0; i < this.currentProject.deadlines.length; i++) {
         this.tasks.push(...this.currentProject.deadlines[i].tasks);
@@ -87,35 +96,41 @@ export class ProjectService {
     }
   }
 
-  getMemberProgress() {
-    this.getMembers();
+  async getMemberProgress() {
+    // Updates member array and task array
+    this.memberProgressArray = [];
+
+    await this.getMembers();
     this.getTasks();
 
-    for(let i = 0; i < this.membersUserArray.length; i++) {
-      
-      let memberProgress = {
+    // TODO: delete this
+    console.log('Length of members array: ' + this.membersUserArray.length);
+    console.log('members: ' + JSON.stringify(this.membersUserArray));
+    console.log('members no stringify: ' + this.membersUserArray);
+
+    for (let i = 0; i < this.membersUserArray.length; i++) {
+
+      const memberProgress = {
         member: null,
         completedTasks: [],
         pendingTasks: [],
-        contribution: 0
       };
 
       memberProgress.member = this.membersUserArray[i];
 
-      for(let j = 0; j < this.tasks.length; j++) {
-        if(this.tasks[j].userAssigned === memberProgress.member.displayName) {
-          if(this.tasks[j].completed === true) {
+      for (let j = 0; j < this.tasks.length; j++) {
+        if (this.tasks[j].userAssigned === memberProgress.member.displayName) {
+          if (this.tasks[j].completed === true) {
             memberProgress.completedTasks.push(this.tasks[j]);
-          }else if(this.tasks[j].completed === false) {
+          } else if (this.tasks[j].completed === false) {
             memberProgress.pendingTasks.push(this.tasks[j]);
           }
         }
       }
-      memberProgress.contribution = (memberProgress.completedTasks.length / this.tasks.length) * 100;
-      this.memberProgressArray.push(memberProgress);
+      console.log(memberProgress);
+
+      this.memberProgressArray[i] = memberProgress;
     }
-    
-    console.log(this.memberProgressArray)
   }
 
 

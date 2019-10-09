@@ -29,12 +29,14 @@
     <div class="row">
       <div class="col-3 m-2" *ngFor="let project of projects">
         <div class="card shadow border-0 p-4">
-          <div class="row m-0 p-0">
-            <h5>{{ project.name }}</h5>
-            <img class="align-self-center ml-auto" src="../../../assets/group_18px.svg">
-            <small class="text-secondary align-self-center">
-              {{ project.members.length }}
-            </small>
+          <div class="row">
+            <div class="col">
+              <h5>{{ project.name }}</h5>
+              <img class="align-self-center ml-auto" src="../../../assets/group_18px.svg">
+              <small class="text-secondary align-self-center">
+                {{ project.members.length }}
+              </small>
+            </div>
           </div>
           <div class="card-body p-0">
 

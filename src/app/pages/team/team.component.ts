@@ -1,17 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { ProjectService } from "../../core/services/project.service";
-import { Project, Task, MemberProgress } from "src/app/models/project";
-import { AuthService } from "../../core/authentication/auth.service";
-import { User } from "src/app/models/user";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../core/services/project.service';
+import { Project, Task, MemberProgress } from 'src/app/models/project';
+import { AuthService } from '../../core/authentication/auth.service';
+import { User } from 'src/app/models/user';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
-  selector: "app-team",
-  templateUrl: "./team.component.html",
-  styleUrls: ["./team.component.scss"]
+  selector: 'app-team',
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
-  members: User[];
   currentProject: Project;
   currentProjectSelected?: Boolean;
   memberProgressArray: MemberProgress[] = [];
@@ -26,19 +25,17 @@ export class TeamComponent implements OnInit {
     this.currentProject = this.projectService.getCurrentProject();
     if (this.currentProject) {
       this.currentProjectSelected = true;
-      this.projectService.getMembers();
-      this.members = this.projectService.membersUserArray;
-      this.projectService.memberProgressArray = [];
       this.projectService.getMemberProgress();
+      console.log(this.projectService.memberProgressArray);
+      console.log(this.projectService.membersUserArray);
       this.memberProgressArray = this.projectService.memberProgressArray;
-      console.log(this.memberProgressArray);
     } else {
       this.currentProjectSelected = false;
     }
   }
 
   removeMember(i) {
-    this.members.splice(i, 1);
+    this.memberProgressArray.splice(i, 1);
     this.projectService.currentProject.members.splice(i, 1);
     this.projectService.updateProject(this.projectService.currentProject);
   }

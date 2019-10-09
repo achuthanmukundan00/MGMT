@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { ProjectService } from '../../core/services/project.service';
 import { Project } from '../../models/project';
 import { map } from 'rxjs/operators';
@@ -18,11 +18,12 @@ export class ProjectsComponent implements OnInit {
   editState = false;
   projectToEdit: Project;
 
-  constructor(private projectService: ProjectService, private auth: AuthService) {
+  constructor(private projectService: ProjectService,
+              private auth: AuthService, ) {
   }
 
   ngOnInit() {
-    this.getRequiredProjects();   
+    this.getRequiredProjects();
   }
 
   private getRequiredProjects() {

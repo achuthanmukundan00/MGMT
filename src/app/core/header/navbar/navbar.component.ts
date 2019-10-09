@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Hit } from 'angular-instantsearch/instantsearch/instantsearch';
-import { User } from 'src/app/models/user';
+
 
 @Component({
   selector: 'app-navbar',
