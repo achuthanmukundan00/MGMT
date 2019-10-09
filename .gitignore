@@ -46,3 +46,4 @@ Thumbs.db
 bfg-1\.13\.0\.jar
 src/environments/environment.prod.ts
 src/environments/environment.ts
+functions/src/index.ts
