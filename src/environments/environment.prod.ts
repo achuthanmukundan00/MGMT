@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyD7FJyl9s5fn7wEwK5cUX37loJoo4TdNfM',
+    apiKey: 'AIzaSyDhrpCT92nr5asKy8sgHQvjmuqkvAIgKWg',
     authDomain: 'mgmt-15d2d.firebaseapp.com',
     databaseURL: 'https://mgmt-15d2d.firebaseio.com',
     projectId: 'mgmt-15d2d',
