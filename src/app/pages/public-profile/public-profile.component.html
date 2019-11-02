@@ -7,7 +7,7 @@
         </div>
         <h4 class="font-weight-bold text-center pt-3 pb-2 m-0 border-bottom">{{ user.displayName }}</h4>
         <div class="media-body pt-3 pb-1 ">
-          <button type="button" class="btn btn-block btn-success shadow-sm m-0" data-toggle="modal"
+          <button type="button" id="add-button" class="btn btn-block shadow-sm m-0" data-toggle="modal"
             data-target="#addToProjectModal" (click)="getMyProjects()">Add to a Project</button>
 
           <!-- "Add to Project" Modal -->
@@ -15,8 +15,8 @@
             aria-labelledby="addToProjectModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addToProjectModalLabel">Which project will you add {{ user.displayName }}
+                <div class="modal-header" id="add-modal-title">
+                  <h5 class="modal-title font-weight-bold" id="addToProjectModalLabel">Which project will you add {{ user.displayName }}
                     to?</h5>
                 </div>
                 <div class="modal-body">

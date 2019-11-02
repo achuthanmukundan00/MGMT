@@ -1,6 +1,7 @@
-<div class="card rounded-0 shadow border-0 mt-4">
+<div  class="card rounded-0 shadow border-0 p-0">
+    <h5 class="card-title rounded shadow-sm m-0 p-3 text-white font-weight-bold">Upcoming Deadlines</h5>
   <div class="card-body">
-    <h5 class="card-title font-weight-bold mb-4">Upcoming Deadlines</h5>
+   
     <small class="font-italic" *ngIf="!currentProject.deadlines">No deadlines yet</small>
     <div class="container-fluid px-3 pb-3">
       <div class="row shadow-sm bg-light rounded p-3 mb-3" *ngFor="let deadline of deadlines; let i = index">
@@ -16,8 +17,8 @@
       <div class="modal" id="deadlineModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content border-0 shadow-sm">
-            <div class="modal-header shadow-sm">
-              <h5 class="modal-title">Create a new deadline</h5>
+            <div class="modal-header shadow-sm" id="deadline-create-title">
+              <h5 class="modal-title font-weight-bold">Create a new deadline</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -30,7 +31,7 @@
       </div>
 
     </div>
-    <button class="btn btn-light shadow-sm mx-auto text-info font-weight-bold" data-toggle="modal"
+    <button class="btn btn-light shadow mx-auto text-info" data-toggle="modal"
         data-target="#deadlineModal">+</button>
   </div>
 </div>

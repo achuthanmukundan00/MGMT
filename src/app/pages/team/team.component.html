@@ -4,7 +4,7 @@
 
 <ng-template #noneSelected>
   <div class="col mt-5">
-    <h1 class="text-center">Select a project to start.</h1>
+    <h1 class="text-center">Select a project to start</h1>
     <p class="text-center">Go the the projects menu, and get to work on a project</p>
     <div class="col text-center">
       <button class="btn btn-primary shadow-sm" routerLink="/projects">Go to projects</button>
@@ -14,7 +14,7 @@
 
 <ng-template #projectSelected>
   <div class="container-fluid p-4">
-    <h1 class="mb-4">{{ currentProject.name }}'s Team</h1>
+    <h2 class="mb-4 font-weight-bold">{{ currentProject.name }}'s Team</h2>
     <div class="row rounded shadow mx-0 mb-3 py-3 pl-3 pr-4" *ngFor="let memberProgress of memberProgressArray; let i = index;">
       <div class="col border-right p-0">
         <div class="media pr-5">
@@ -23,7 +23,7 @@
             <h6 class="my-0">{{ memberProgress.member.displayName }}</h6>
             <small class="my-0" *ngIf="i == 0">Leader</small>
           </div>
-          <img class="ml-auto align-self-center" *ngIf="i !== 0" (click)="removeMember(i)" data-toggle="tooltip" data-placement="top" title="Remove this member"
+          <img class="ml-auto align-self-center" id="remove-member" *ngIf="i !== 0" (click)="removeMember(i)" data-toggle="tooltip" data-placement="top" title="Remove this member"
         src="../../../assets/baseline-remove_circle_outline-24px.svg">
         </div>
        

@@ -1,11 +1,21 @@
 <div
-  *ngIf="(auth.user | async) as user"
-  class="card shadow border-0 rounded-0 mt-4"
+  class="card rounded-0 shadow border-0 p-0"
+  *ngIf="auth.user | async as user"
 >
+  <h5 class="card-title rounded shadow-sm m-0 p-3 text-white font-weight-bold">
+    Team
+  </h5>
+
   <div class="card-body">
-    <h5 class="card-title mb-4">Team</h5>
-    <div class="member media py-2" *ngFor="let member of members; let i = index" (click)="onSelect(member)">
-      <hr *ngIf="i >= 0 && i <= (members.length - 1)" style="border-width: 1px;">
+    <div
+      class="member media py-2"
+      *ngFor="let member of members; let i = index"
+      (click)="onSelect(member)"
+    >
+      <hr
+        *ngIf="i >= 0 && i <= members.length - 1"
+        style="border-width: 1px;"
+      />
       <img
         [src]="member.photoURL"
         class="img-fluid align-self-center mr-3 rounded-circle"
@@ -15,7 +25,7 @@
         <h6 class="align-middle mb-0">{{ member.displayName }}</h6>
         <small class="m-0" *ngIf="i == 0">Leader</small>
       </div>
-      <hr *ngIf="i >= 0 && i <= (members.length - 1)">
+      <hr *ngIf="i >= 0 && i <= members.length - 1" />
     </div>
   </div>
 </div>

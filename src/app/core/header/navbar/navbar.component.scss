@@ -1,6 +1,20 @@
-.results{
-    z-index: 1000;
+.results {
+  z-index: 1000;
 }
-.user-result{
-    cursor: pointer;
+.user-result {
+  cursor: pointer;
+}
+#nav-authenticated {
+  background: linear-gradient(40deg, #292e33, #5c5f61);
+}
+.nav-item {
+  color: #bdbdbd;
+  cursor: pointer;
+}
+.nav-item:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+small {
+  color: #ffffff;
 }

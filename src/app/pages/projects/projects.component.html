@@ -1,8 +1,15 @@
-<div class="mt-4 mb-3 container-fluid">
-  <div class="row py-1 px-3">
-    <h1>Projects.</h1>
+<div class="p-4 container-fluid">
+  
+  <div class="row m-0 p-0">
     <!-- Modal trigger -->
-    <button type="button" class="btn btn-success ml-auto shadow-sm" data-toggle="modal" data-target="#project-creator">
+    <h2 class="font-weight-bold mb-4">Projects</h2>
+    <button
+      type="button"
+      class="btn ml-auto shadow-sm"
+      data-toggle="modal"
+      id="create-button"
+      data-target="#project-creator"
+    >
       Create a new project
     </button>
 
@@ -10,9 +17,14 @@
     <div class="modal" id="project-creator" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow-sm">
-          <div class="modal-header shadow-sm">
-            <h5 class="modal-title">Create a new project</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <div class="modal-header m-0 shadow-sm" id="create-modal">
+            <h5 class="modal-title font-weight-bold">Create a new project</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -25,44 +37,72 @@
   </div>
 
   <!-- Project cards -->
-  <div class="container-fluid pt-3 px-3">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-3 m-2" *ngFor="let project of projects">
-        <div class="card shadow border-0 p-4">
+      <div class="col-3 p-0" *ngFor="let project of projects">
+        <div class="card shadow border-0 p-4 mr-4 mb-4">
           <div class="row">
             <div class="col">
               <h5>{{ project.name }}</h5>
-              <img class="align-self-center ml-auto" src="../../../assets/group_18px.svg">
+              <img
+                class="align-self-center ml-auto"
+                src="../../../assets/group_18px.svg"
+              />
               <small class="text-secondary align-self-center">
                 {{ project.members.length }}
               </small>
             </div>
           </div>
           <div class="card-body p-0">
-
-            <p class="card-text text-secondary mt-2">{{ project.description }}</p>
+            <p class="card-text text-secondary mt-2">
+              {{ project.description }}
+            </p>
           </div>
           <div class="row mt-5 p-0 mx-0 mb-0">
-            <button type="button" class="btn btn-primary shadow-sm" (click)="setCurrentProject(project)"
-              routerLink="/dashboard">
+            <button
+              type="button"
+              id="openProject"
+              class="btn shadow-sm"
+              (click)="setCurrentProject(project)"
+              routerLink="/dashboard"
+            >
               Open Project
             </button>
-            <button type="button" class="btn btn-secondary shadow-sm ml-2" data-toggle="modal"
-              data-target="#editorModal" (click)="editProject($event, project)">
+            <button
+              type="button"
+              class="btn shadow-sm ml-2"
+              id="editProject"
+              data-toggle="modal"
+              data-target="#editorModal"
+              (click)="editProject($event, project)"
+            >
               Edit
             </button>
           </div>
 
           <!-- Editor Modal -->
-          <div *ngIf="editState && projectToEdit.id == project.id" class="modal fade" id="editorModal" tabindex="-1"
-            role="dialog" aria-labelledby="editorModalLabel" aria-hidden="true">
+          <div
+            *ngIf="editState && projectToEdit.id == project.id"
+            class="modal fade"
+            id="editorModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="editorModalLabel"
+            aria-hidden="true"
+          >
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="projectName">
+                <div class="modal-header m-0 shadow-sm" id="edit-modal">
+                  <h5 class="modal-title font-weight-bold">
                     Edit {{ project.name }}
                   </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearState()">
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    (click)="clearState()"
+                  >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -70,21 +110,45 @@
                   <form>
                     <div class="form-group">
                       <label for="projectName">Project Name</label>
-                      <input type="name" class="form-control" [(ngModel)]="project.name" name="name" id="projectName"
-                        placeholder="Give your project a cool name." />
+                      <input
+                        type="name"
+                        class="form-control"
+                        [(ngModel)]="project.name"
+                        name="name"
+                        id="projectName"
+                        placeholder="Give your project a cool name."
+                      />
                     </div>
                     <div class="form-group">
                       <label for="projectDescription">Description</label>
-                      <textarea type="description" [(ngModel)]="project.description" name="description"
-                        class="form-control" maxlength="150" id="projectDescription" aria-describedby="characterLimit"
-                        placeholder="Describe what your project's about."></textarea>
+                      <textarea
+                        type="description"
+                        [(ngModel)]="project.description"
+                        name="description"
+                        class="form-control"
+                        maxlength="150"
+                        id="projectDescription"
+                        aria-describedby="characterLimit"
+                        placeholder="Describe what your project's about."
+                      ></textarea>
                       <small id="characterLimit">Max. 150 Characters</small>
                     </div>
-                    <button type="button" class="btn btn-primary" (click)="updateProject(project)" data-dismiss="modal">
+                    <button
+                      type="button"
+                      class="btn"
+                      id="save-changes"
+                      (click)="updateProject(project)"
+                      data-dismiss="modal"
+                    >
                       Save changes
                     </button>
-                    <button type="button" class="btn btn-danger shadow-sm ml-2" (click)="onSubmit($event, project)"
-                      data-dismiss="modal">
+                    <button
+                      type="button"
+                      class="btn shadow-sm ml-2"
+                      id="delete-project"
+                      (click)="onSubmit($event, project)"
+                      data-dismiss="modal"
+                    >
                       Delete
                     </button>
                   </form>
@@ -92,7 +156,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

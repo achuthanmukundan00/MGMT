@@ -2,21 +2,19 @@
 </div>
 
 <ng-template #projectSelected>
-  <div>
-    <div class="mt-5 mb-3 container-fluid">
-      <h1 class="project-title font-weight-bold">{{ currentProject.name }}</h1>
+  <div class="container-fluid p-4">
+      <h2 class="project-title mb-4 font-weight-bold">{{ currentProject.name }}</h2>
 
       <div class="container-fluid">
         <div class="row">
-          <app-card-tasks class="task-card mr-2 col-sm"></app-card-tasks>
-          <app-card-team class="team-card ml-2 col-sm"></app-card-team>
+          <app-card-tasks class="task-card p-0 mr-2 col-sm"></app-card-tasks>
+          <app-card-team class="team-card p-0 mr-2 col-sm"></app-card-team>
           <app-card-deadlines
-            class="deadlines-card ml-2 col-sm"
+            class="deadlines-card p-0 mr-2 col-sm"
           ></app-card-deadlines>
         </div>
       </div>
     </div>
-  </div>
 </ng-template>
 
 <ng-template #noneSelected>
@@ -24,7 +22,7 @@
       <h1 class="text-center">Select a project to start</h1>
       <p class="text-center">Go the the projects menu, and get to work on a project</p>
       <div class="col col text-center">
-      <button class="btn btn-primary shadow-sm" routerLink="/projects">Go to projects</button>
+      <button class="btn shadow-sm" id="go-to-projects" routerLink="/projects">Go to projects</button>
       </div>
   </div>  
 </ng-template>

@@ -1,17 +1,23 @@
-h5{
-  font-weight: bold;
-}
-.form-check-label{
-font-size: 14px;
-}
-.form-control{
+
+.form-check-label {
   font-size: 14px;
 }
-::placeholder{
-color: rgb(190, 190, 190)
+.form-control {
+  font-size: 14px;
 }
-.delete-icon{
+::placeholder {
+  color: rgb(190, 190, 190);
+}
+.delete-icon {
   width: 28px;
   height: 28px;
   cursor: pointer;
+}
+.card-title {
+  background: linear-gradient(40deg, #eb3349, #f36c57);
+  border-radius: 2rem;
+}
+#task-creator-title {
+  background: linear-gradient(40deg, #eb3349, #f36c57);
+  color: #ffffff;
 }
