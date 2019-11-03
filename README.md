@@ -11,19 +11,6 @@ A project management app built for students. Take charge of your team projects. 
 | ![Team](/images/team.png) | ![Profile](/images/profile.png)  |
 
 
-
-Get an overview of your project's To-Do's and upcoming deadlines on the dashboard.
-
-
-You can view, choose from and create projects on the project page.
-
-
-Track your team members' contributions on the team page, ensuring even delegation of work.
-
-
-You can see all of the projects you are involved in on your profile page. Other's can view this page too.
-
-
 Can be found at:
 https://mgmt-15d2d.firebaseapp.com/
 (version 1.1)
